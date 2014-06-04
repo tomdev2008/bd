@@ -9,5 +9,5 @@ import net.sf.json.JSONObject;
  * @description : 网络Json服务
  */
 public interface NetworkService {
-	public JSONObject httpRequest(String requestUrl, String requestMethod, String outputStr);
+	public JSONObject httpsRequest(String requestUrl, String requestMethod, String outputStr);
 }

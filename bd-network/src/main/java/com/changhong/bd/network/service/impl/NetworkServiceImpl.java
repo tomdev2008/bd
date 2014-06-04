@@ -39,7 +39,7 @@ public class NetworkServiceImpl implements NetworkService {
 	 * @return
 	 */
 	@Override
-	public JSONObject httpRequest(String requestUrl, String requestMethod, String outputStr) {
+	public JSONObject httpsRequest(String requestUrl, String requestMethod, String outputStr) {
 		JSONObject jsonObject = null;
 		StringBuffer buffer = new StringBuffer();
 		try {
