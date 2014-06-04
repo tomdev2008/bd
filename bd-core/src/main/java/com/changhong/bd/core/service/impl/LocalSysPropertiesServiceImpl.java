@@ -1,7 +1,5 @@
 package com.changhong.bd.core.service.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -36,8 +34,7 @@ public class LocalSysPropertiesServiceImpl {
 		if(null!=reses && reses.length>0){
 			for(Resource res : reses){
 				logger.info("load {} file : {}", FILE_PATTERN, res.getURL().toString());
-				File file = res.getFile();
-				InputStream is = new FileInputStream(file);
+				InputStream is = res.getInputStream();
 				Properties p = new Properties();
 				p.load(is);
 				
