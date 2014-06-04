@@ -1,0 +1,8 @@
+.classpath
+.project
+.settings/
+target/classes/
+target/*
+src/main/resources/jdbc.properties
+/target
+src/test/resources/jdbc.properties
