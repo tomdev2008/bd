@@ -1,4 +1,4 @@
-package com.changhong.bd.core.dao.impl;
+package com.changhong.bd.core.dao.impl.abs;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

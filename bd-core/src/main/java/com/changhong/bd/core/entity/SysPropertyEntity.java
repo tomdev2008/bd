@@ -30,6 +30,12 @@ public class SysPropertyEntity extends AbsTxNameEntity{
 	@Column(name="propertyvalue")
 	private String propertyValue = "";
 
+	/**
+	 * appid 代码
+	 */
+	@Column(name="appid")
+	private String appId = "";
+
 	public String getPropertyName() {
 		return propertyName;
 	}
@@ -44,6 +50,14 @@ public class SysPropertyEntity extends AbsTxNameEntity{
 
 	public void setPropertyValue(String propertyValue) {
 		this.propertyValue = propertyValue;
+	}
+
+	public String getAppId() {
+		return this.appId;
+	}
+
+	public void setAppId(String appId) {
+		this.appId = appId;
 	}
 
 	

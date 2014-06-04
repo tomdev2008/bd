@@ -2,7 +2,7 @@ package com.changhong.bd.social.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.changhong.bd.core.dao.impl.MainHibernateDao;
+import com.changhong.bd.core.dao.impl.abs.MainHibernateDao;
 import com.changhong.bd.social.entity.SocialBind;
 
 /**

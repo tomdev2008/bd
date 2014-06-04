@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.changhong.bd.core.dao.impl.BaseHibernateDaoImpl;
+import com.changhong.bd.core.dao.impl.abs.BaseHibernateDaoImpl;
 
 /**
  * @author QiYao  yao.qi@changhong.com

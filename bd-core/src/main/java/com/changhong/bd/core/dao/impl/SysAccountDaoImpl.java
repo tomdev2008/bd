@@ -3,6 +3,7 @@ package com.changhong.bd.core.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import com.changhong.bd.core.dao.api.SysAccountDao;
+import com.changhong.bd.core.dao.impl.abs.MainHibernateDao;
 import com.changhong.bd.core.entity.SysAccountEntity;
 
 /**
