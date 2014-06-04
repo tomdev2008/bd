@@ -78,7 +78,7 @@ public class WechatServiceImpl implements WechatService {
 	 */
 	private WechatProcessPlugin helpPlugin = null;
 	
-	@Autowired
+	@Autowired(required=false)
 	public void setPlugin(List<WechatProcessPlugin> plugins){
 		if(null!=plugins){
 			logger.info("wechat plugin register size："+plugins.size());
