@@ -1,0 +1,12 @@
+.classpath
+.project
+.settings/
+target/classes/
+target/*
+src/main/webapp/.idea/
+src/main/webapp/static/libs/bs/js/.jscs.json
+src/main/webapp/static/libs/bs/js/.jshintrc
+src/main/webapp/static/libs/bs/less/.csscomb.json
+src/main/webapp/static/libs/bs/less/.csslintrc
+src/main/resources/jdbc.properties
+/target
