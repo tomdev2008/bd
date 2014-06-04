@@ -43,7 +43,7 @@ public interface BaseHibernateDao<T extends Serializable, PK extends Serializabl
 	public abstract T loadWithLock(PK id, LockMode lock);
 
 	// 获取全部实体。
-	public abstract List<T> loadAll();
+	public abstract List<T> queryAll();
 
 	// 更新实体
 	public abstract void update(T entity);

@@ -88,7 +88,7 @@ public abstract class BaseHibernateDaoImpl<T extends Serializable, PK extends Se
     }
 
     // 获取全部实体。
-    public List<T> loadAll() {
+    public List<T> queryAll() {
         return (List<T>) getHibernateTemplate().loadAll(entityClass);
     }
 
