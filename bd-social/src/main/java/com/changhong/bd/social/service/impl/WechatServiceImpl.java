@@ -27,6 +27,7 @@ import com.changhong.bd.social.service.api.SocialService;
 import com.changhong.bd.social.service.api.WechatService;
 import com.changhong.bd.social.utils.SocialTypeUtils;
 import com.changhong.bd.social.utils.WechatMessageUtils;
+import com.changhong.bd.social.utils.WechatUtils;
 import com.changhong.bd.social.utils.WechatXmlUtils;
 import com.changhong.bd.social.wechat.message.in.BaseInMessage;
 import com.changhong.bd.social.wechat.message.in.TextInMessage;
@@ -41,12 +42,9 @@ import com.changhong.bd.social.wechat.message.out.TextOutMessage;
 @Service("wechatService")
 public class WechatServiceImpl implements WechatService {
 	private Logger logger = LoggerFactory.getLogger(WechatServiceImpl.class);
-	
-	public final static String access_token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
-	public static String menu_create_url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
-	
-	private static final String AK = "wx2b2e75b10999bc54";
-	private static final String SK = "5b5220e01c92d2a8c39d1e687988b75e";
+		
+	//private static final String AK = "wx2b2e75b10999bc54";
+	//private static final String SK = "5b5220e01c92d2a8c39d1e687988b75e";
 	
 	@Autowired
 	private NetworkService networkService;
@@ -206,8 +204,8 @@ public class WechatServiceImpl implements WechatService {
 	public WechatAccessToken queryToken(String ak, String sk) {
 		WechatAccessToken accessToken = null;
 
-		String requestUrl = access_token_url.replace("APPID", ak).replace("APPSECRET", sk);
-		JSONObject jsonObject = networkService.httpRequest(requestUrl, "GET", null);
+		String requestUrl = WechatUtils.getAccessTokenUrl().replace("APPID", ak).replace("APPSECRET", sk);
+		JSONObject jsonObject = networkService.httpsRequest(requestUrl, "GET", null);
 		// 如果请求成功
 		if (null != jsonObject) {
 			try {
@@ -228,11 +226,11 @@ public class WechatServiceImpl implements WechatService {
 		int result = 0;
 
 		// 拼装创建菜单的url
-		String url = menu_create_url.replace("ACCESS_TOKEN", accessToken);
+		String url = WechatUtils.getMenuCreateUrl().replace("ACCESS_TOKEN", accessToken);
 		// 将菜单对象转换成json字符串
 		String jsonMenu = JSONObject.fromObject(menu).toString();
 		// 调用接口创建菜单
-		JSONObject jsonObject = networkService.httpRequest(url, "POST", jsonMenu);
+		JSONObject jsonObject = networkService.httpsRequest(url, "POST", jsonMenu);
 
 		if (null != jsonObject) {
 			if (0 != jsonObject.getInt("errcode")) {
@@ -247,7 +245,7 @@ public class WechatServiceImpl implements WechatService {
 	@Override
 	public String[] queryAkSk() {
 		return new String[]{
-			AK,SK
+			WechatUtils.getWechatAk(),WechatUtils.getWechatSk()
 		};
 	}
 
