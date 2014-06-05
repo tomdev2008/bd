@@ -57,22 +57,26 @@ public class SignController {
 		token.setRememberMe(false);
 		
 		JsonMessage jm = new JsonMessage();
-		jm.setMessage("error");
+		jm.setMessage("出错");
 		//执行登陆操作
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
 		    currentUser.login(token);
 		    //SysAccountEntity sysAccount =  this.sysAccountService.queryUserByLoginName(account);
 		    //该社交账户已经绑定的信息, 如果存在，就先删除了
-			jm.setMessage("security/index");
+			jm.setMessage("success");
 		} catch ( UnknownAccountException uae ) {
 			uae.printStackTrace();
+			jm.setMessage("账户不存在");
 		} catch ( IncorrectCredentialsException ice ) {
 			ice.printStackTrace();
+			jm.setMessage("密码错误");
 		} catch ( LockedAccountException lae ) { 
 			lae.printStackTrace();
+			jm.setMessage("账户已被锁定");
 		} catch ( ExcessiveAttemptsException eae ) { 
 			eae.printStackTrace();
+			jm.setMessage("尝试次数过多");
 		}
 		
 		

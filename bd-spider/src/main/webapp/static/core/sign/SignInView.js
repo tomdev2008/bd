@@ -1,6 +1,7 @@
 /**
  * Created by qiyao on 2014/5/27.
  * email : yao.qi@changhong.com
+ * 登陆view
  */
 define([
     "underscore",
@@ -10,6 +11,7 @@ define([
 ], function (_, base, tpl) {
     "use strict";
     var V = base.BaseView,
+        SuccessUrl = window.basePath + "security/index",
         Modal = base.InfoModalView;
     return V.extend({
         template: _.template(tpl,null,{variable:"args"}),
@@ -37,8 +39,8 @@ define([
                     type:"POST",
                     data:data,
                     success:function(data){
-                        if(data.status === 200){
-                            window.location = window.basePath + data.message;
+                        if(data.status === 200 && "success"===data.message){
+                            window.location = SuccessUrl;
                         }else{
                             modal = new Modal({
                                 data:data.message
