@@ -1,4 +1,4 @@
-package com.changhong.bd.spider.entity;
+package com.changhong.bd.spider.entity.abs;
 
 import java.io.Serializable;
 

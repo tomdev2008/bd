@@ -7,6 +7,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+import com.changhong.bd.spider.entity.abs.AbsSpiderEntity;
+
 /**
  * @author QiYao  yao.qi@changhong.com
  * @date 2014年5月15日
