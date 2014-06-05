@@ -16,7 +16,7 @@ import com.changhong.bd.core.entity.abs.AbsEntity;
  * @description : 微信信息，记录信息
  */
 @Entity
-@Table(name="bd_social_wechat_message")
+@Table(name="social_wechat_message")
 public class SocialWechatMessage extends AbsEntity {
 
 	private static final long serialVersionUID = 5581475878116946552L;

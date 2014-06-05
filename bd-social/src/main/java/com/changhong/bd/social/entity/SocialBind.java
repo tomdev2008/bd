@@ -16,7 +16,7 @@ import com.changhong.bd.core.entity.abs.AbsTxEntity;
  * @description : 绑定社交账户
  */
 @Entity
-@Table(name="bd_social_bind")
+@Table(name="social_bind")
 public class SocialBind extends AbsTxEntity{
 
 	private static final long serialVersionUID = 9141368988489980678L;
