@@ -9,6 +9,9 @@ define([
     "use strict";
     var V = base.BaseView;
     return V.extend({
-
+        render:function(){
+            this.$el.html("报表仓库");
+            return this;
+        }
     });
 });
