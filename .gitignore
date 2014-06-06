@@ -2,3 +2,4 @@
 */.settings/
 .settings/
 bd-social/src/test/resources/jdbc.properties
+bd-pay/.classpath

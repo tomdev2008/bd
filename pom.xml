@@ -372,5 +372,6 @@
 		<module>bd-social</module>
 		<module>bd-spider</module>
 		<module>bd-mingwang</module>
+		<module>bd-pay</module>
 	</modules>
 </project>
