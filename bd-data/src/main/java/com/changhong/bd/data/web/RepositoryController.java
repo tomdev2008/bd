@@ -14,6 +14,7 @@ import com.changhong.bd.core.resp.JsonData;
 import com.changhong.bd.core.resp.Produces;
 import com.changhong.bd.data.domain.DbTableDto;
 import com.changhong.bd.data.domain.RepositoryDto;
+import com.changhong.bd.data.domain.TableColumnDto;
 import com.changhong.bd.data.entity.RepositoryEntity;
 import com.changhong.bd.data.service.api.DataDefinitionStoreService;
 import com.changhong.bd.data.service.api.DbStructureService;
@@ -61,13 +62,18 @@ public class RepositoryController {
 	}
 	/**
 	 * 通过table 名  和 仓库id查询列信息
+	 * @throws SQLException 
 	 */
 	@RequestMapping(value="/{id}/{tableName}", method=RequestMethod.GET, produces=Produces.JSON_STRING)
 	@ResponseBody
-	public void queryTableColumns(
+	public List<TableColumnDto> queryTableColumns(
 			@PathVariable(value="id") String id,
 			@PathVariable(value="tableName") String tableName
-			){
+			) throws SQLException{
 		
+		RepositoryEntity rep = this.dataDefinitionStoreService.query(id);
+		List<TableColumnDto> cols = dbStructureService.queryColumns(rep , tableName);
+		
+		return cols;
 	}
 }
