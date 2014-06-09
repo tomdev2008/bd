@@ -1,6 +1,7 @@
 package com.changhong.bd.data.domain;
 
 import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
+import com.changhong.bd.data.entity.RepositoryEntity;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -19,6 +20,16 @@ public class RepositoryDto extends AbsTxNameEntity{
 	private String username = "";
 	
 	private String schema = "";
+
+	public RepositoryDto() {
+	}	
+	public RepositoryDto(RepositoryEntity rep) {
+		super(rep);
+		this.driver = rep.getDriver();
+		this.url = rep.getUrl();
+		this.username = rep.getUsername();
+		this.schema = rep.getSchema();
+	}
 
 	public String getDriver() {
 		return driver;
