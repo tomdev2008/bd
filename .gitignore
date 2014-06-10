@@ -5,3 +5,4 @@ bd-social/src/test/resources/jdbc.properties
 bd-pay/.classpath
 .idea/
 bd-mingwang/src/main/resources/jdbc.properties
+web/node_modules/

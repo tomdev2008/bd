@@ -3,10 +3,8 @@ package com.changhong.bd.data.service.api;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.changhong.bd.data.domain.DataElementDto;
 import com.changhong.bd.data.domain.DbTableDto;
 import com.changhong.bd.data.domain.TableColumnDto;
-import com.changhong.bd.data.entity.DataElementGroupEntity;
 import com.changhong.bd.data.entity.RepositoryEntity;
 
 /**
@@ -39,12 +37,4 @@ public interface DbStructureService {
 	 * @throws SQLException 
 	 */
 	public List<TableColumnDto> queryColumns(RepositoryEntity rep, String tableName) throws SQLException;
-
-	/**
-	 * 获取数据集的数据元素
-	 * @param group
-	 * @return
-	 * @throws SQLException
-	 */
-	public List<DataElementDto> queryDateElement(DataElementGroupEntity group) throws SQLException;
 }

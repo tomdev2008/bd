@@ -1,7 +1,8 @@
 package com.changhong.bd.data.entity;
 
-import java.util.Set;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -32,9 +33,8 @@ public class DataElementGroupEntity extends AbsTxNameEntity{
 	@Column(name="processlanguage")
 	private String processLanguage;
 	
-	@OneToMany
-	@JoinColumn(name="groupid")
-	private Set<DataElementEntity> dataElements;
+	@OneToMany(mappedBy="group",cascade=CascadeType.ALL)
+	private List<DataElementEntity> dataElements;
 
 	public RepositoryEntity getRep() {
 		return rep;
@@ -52,17 +52,12 @@ public class DataElementGroupEntity extends AbsTxNameEntity{
 		this.processLanguage = processLanguage;
 	}
 
-	public Set<DataElementEntity> getDataElements() {
+	public List<DataElementEntity> getDataElements() {
 		return dataElements;
 	}
 
-	public void setDataElements(Set<DataElementEntity> dataElements) {
+	public void setDataElements(List<DataElementEntity> dataElements) {
 		this.dataElements = dataElements;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
 	
 }

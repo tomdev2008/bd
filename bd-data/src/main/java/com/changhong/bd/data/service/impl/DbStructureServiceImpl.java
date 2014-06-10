@@ -3,9 +3,7 @@ package com.changhong.bd.data.service.impl;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.changhong.bd.data.domain.DataElementDto;
 import com.changhong.bd.data.domain.DbTableDto;
 import com.changhong.bd.data.domain.TableColumnDto;
-import com.changhong.bd.data.entity.DataElementEntity;
-import com.changhong.bd.data.entity.DataElementGroupEntity;
 import com.changhong.bd.data.entity.RepositoryEntity;
 import com.changhong.bd.data.service.api.BdDataSourceFactory;
 import com.changhong.bd.data.service.api.DbStructureService;
@@ -38,58 +33,6 @@ public class DbStructureServiceImpl implements DbStructureService{
 	
 	private static Logger logger = LoggerFactory.getLogger(DbStructureServiceImpl.class);
 	
-	@Override
-	public List<DataElementDto> queryDateElement(DataElementGroupEntity group) throws SQLException{
-		RepositoryEntity rep = group.getRep();
-		Statement statement = this.bdDataSourceFactory.queryStatement(rep);
-		ResultSet rs = statement.executeQuery(group.getProcessLanguage());
-		ResultSetMetaData metaData = rs.getMetaData();
-		
-		Integer columnSize = metaData.getColumnCount();
-		
-		List<DataElementDto> listd = new ArrayList<DataElementDto>();
-		for(int i=1;i<=columnSize;i++){
-			//单数据元素
-			DataElementEntity dee = new DataElementEntity();
-			
-			String tableCatalog = metaData.getCatalogName(i);
-			dee.setTableCatalog(tableCatalog);
-			
-			String columnClassName = metaData.getColumnClassName(i);
-			dee.setColumnClassName(columnClassName);
-			
-			int columnDisplaySize = metaData.getColumnDisplaySize(i);
-			dee.setColumnDisplaySize(columnDisplaySize);
-			
-			String columnLabel = metaData.getColumnLabel(i);
-			dee.setColumnLabel(columnLabel);
-			
-			String columnName = metaData.getColumnName(i);
-			dee.setColumnName(columnName);
-			
-			int columnType = metaData.getColumnType(i);
-			dee.setColumnType(columnType);
-			
-			String columnTypeName = metaData.getColumnTypeName(i);
-			dee.setColumnTypeName(columnTypeName);
-			
-			int precision = metaData.getPrecision(i);
-			dee.setPrecision(precision);
-			
-			int scale = metaData.getScale(i);
-			dee.setScale(scale);
-			
-			String tableSchema = metaData.getSchemaName(i);
-			dee.setTableSchema(tableSchema);
-			
-			String tableName = metaData.getTableName(i);
-			dee.setTableName(tableName);
-			
-			//TODO
-			//listd.add(dee);
-		}
-		return listd;
-	}
 	@Override
 	public List<TableColumnDto> queryColumns(DbTableDto tableDomain){
 		RepositoryEntity rep = tableDomain.getRep();

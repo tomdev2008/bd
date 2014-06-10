@@ -25,14 +25,11 @@ public class DataElementEntity extends AbsTxNameEntity{
 	@JoinColumn(name="groupid")
 	private DataElementGroupEntity group;
 	
-	@Column(name="tablecatalog")
-	private String tableCatalog;
-	
 	@Column(name="columnclassname")
 	private String columnClassName;
 
 	@Column(name="columndisplaysize")
-	private int columnDisplaySize;
+	private Integer columnDisplaySize;
 
 	@Column(name="columnlabel")
 	private String columnLabel;
@@ -41,16 +38,16 @@ public class DataElementEntity extends AbsTxNameEntity{
 	private String columnName;
 
 	@Column(name="columntype")
-	private int columnType;
+	private Integer columnType;
 
 	@Column(name="columntypename")
 	private String columnTypeName;
 
-	@Column(name="precision")
-	private int precision;
+	@Column(name="columnprecision")
+	private Integer precision;
 
-	@Column(name="scale")
-	private int scale;
+	@Column(name="columnscale")
+	private Integer scale;
 
 	@Column(name="tableschema")
 	private String tableSchema;
@@ -66,14 +63,6 @@ public class DataElementEntity extends AbsTxNameEntity{
 		this.group = group;
 	}
 
-	public String getTableCatalog() {
-		return tableCatalog;
-	}
-
-	public void setTableCatalog(String tableCatalog) {
-		this.tableCatalog = tableCatalog;
-	}
-
 	public String getColumnClassName() {
 		return columnClassName;
 	}
@@ -82,11 +71,11 @@ public class DataElementEntity extends AbsTxNameEntity{
 		this.columnClassName = columnClassName;
 	}
 
-	public int getColumnDisplaySize() {
+	public Integer getColumnDisplaySize() {
 		return columnDisplaySize;
 	}
 
-	public void setColumnDisplaySize(int columnDisplaySize) {
+	public void setColumnDisplaySize(Integer columnDisplaySize) {
 		this.columnDisplaySize = columnDisplaySize;
 	}
 
@@ -106,11 +95,11 @@ public class DataElementEntity extends AbsTxNameEntity{
 		this.columnName = columnName;
 	}
 
-	public int getColumnType() {
+	public Integer getColumnType() {
 		return columnType;
 	}
 
-	public void setColumnType(int columnType) {
+	public void setColumnType(Integer columnType) {
 		this.columnType = columnType;
 	}
 
@@ -122,19 +111,19 @@ public class DataElementEntity extends AbsTxNameEntity{
 		this.columnTypeName = columnTypeName;
 	}
 
-	public int getPrecision() {
+	public Integer getPrecision() {
 		return precision;
 	}
 
-	public void setPrecision(int precision) {
+	public void setPrecision(Integer precision) {
 		this.precision = precision;
 	}
 
-	public int getScale() {
+	public Integer getScale() {
 		return scale;
 	}
 
-	public void setScale(int scale) {
+	public void setScale(Integer scale) {
 		this.scale = scale;
 	}
 
@@ -153,5 +142,7 @@ public class DataElementEntity extends AbsTxNameEntity{
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
 	}
+
+
 	
 }

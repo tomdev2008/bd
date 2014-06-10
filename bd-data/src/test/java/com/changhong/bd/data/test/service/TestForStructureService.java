@@ -12,12 +12,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.changhong.bd.core.runner.AbstractTestRunner;
 import com.changhong.bd.data.domain.DbTableDto;
 import com.changhong.bd.data.domain.TableColumnDto;
-import com.changhong.bd.data.entity.DataElementGroupEntity;
 import com.changhong.bd.data.entity.RepositoryEntity;
 import com.changhong.bd.data.service.api.BdDataSourceFactory;
 import com.changhong.bd.data.service.api.DataDefinitionStoreService;
@@ -29,9 +27,6 @@ import com.changhong.bd.data.service.api.DbStructureService;
  * @version 1.0
  * @description : 上下文单元测试：数据结构服务
  */
-@ContextConfiguration(locations={
-	"classpath*:/applicationContext.xml"
-})
 public class TestForStructureService extends AbstractTestRunner {
 
 	@Autowired
@@ -93,10 +88,5 @@ public class TestForStructureService extends AbstractTestRunner {
 			List<TableColumnDto> colsDef = this.dbStructureService.queryColumns(d);
 			out(colsDef);
 		}
-		
-		DataElementGroupEntity group = new DataElementGroupEntity();
-		group.setRep(entity);
-		group.setProcessLanguage("SELECT * FROM `bd_sys_account` LIMIT 0, 1000");
-		this.dbStructureService.queryDateElement(group);
 	}
 }
