@@ -2,6 +2,7 @@ package com.changhong.bd.core.runner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -16,6 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @version 1.0
  * @description : 单元测试超类
  */
+@ContextConfiguration(locations={
+		"classpath*:/applicationContext.xml"
+ })
 public class AbstractTestRunner extends AbstractJUnit4SpringContextTests {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
