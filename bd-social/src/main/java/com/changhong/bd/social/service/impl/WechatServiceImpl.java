@@ -11,6 +11,7 @@ import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,9 @@ import com.changhong.bd.social.wechat.message.out.TextOutMessage;
 @Service("wechatService")
 public class WechatServiceImpl implements WechatService {
 	private Logger logger = LoggerFactory.getLogger(WechatServiceImpl.class);
-		
+	
+	private static WechatAccessToken wxt = null;
+	private static DateTime deadTime = null;
 	//private static final String AK = "wx2b2e75b10999bc54";
 	//private static final String SK = "5b5220e01c92d2a8c39d1e687988b75e";
 	
@@ -202,6 +205,27 @@ public class WechatServiceImpl implements WechatService {
 
 	@Override
 	public WechatAccessToken queryToken(String ak, String sk) {
+		DateTime cur = new DateTime();
+		int c = cur.compareTo(deadTime);
+		if(wxt!=null && c==-1){
+			return wxt;
+		}else{
+			WechatAccessToken t = this.queryTokenImpl(ak, sk);
+			wxt = t;
+			int seconds = t.getExpiresIn();
+			cur.plusSeconds((seconds - 100));
+			deadTime = cur;
+			return wxt;
+		}
+	}
+
+	/**
+	 * TOKEN查询实现类
+	 * @param ak
+	 * @param sk
+	 * @return
+	 */
+	public WechatAccessToken queryTokenImpl(String ak, String sk) {
 		WechatAccessToken accessToken = null;
 
 		String requestUrl = WechatUtils.getAccessTokenUrl().replace("APPID", ak).replace("APPSECRET", sk);
@@ -220,7 +244,6 @@ public class WechatServiceImpl implements WechatService {
 		}
 		return accessToken;
 	}
-
 	@Override
 	public int createMenu(WechatMenu menu, String accessToken) {
 		int result = 0;
