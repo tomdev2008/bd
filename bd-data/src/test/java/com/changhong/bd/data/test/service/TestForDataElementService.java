@@ -38,7 +38,7 @@ public class TestForDataElementService extends AbstractTestRunner {
 	
 	@Test
 	public void testAddEleGroup() throws SQLException{
-		group = this.dataElementService.addSqlDataElement("CHiQ三看", "select time,category,contain_store_tv,modes,content,create_time,update_time from chiq_watch_time_analy", "01");
+		group = this.dataElementService.addSqlDataElement("CHiQ三看", "select time as '对应时间',category as '分类',contain_store_tv,modes as '统计方式',content/3600 as '时长(小时)',create_time as '创建时间',update_time as '更新时间' from chiq_watch_time_analy", "01");
 	}
 	@After
 	public void testDeleteGroup(){
