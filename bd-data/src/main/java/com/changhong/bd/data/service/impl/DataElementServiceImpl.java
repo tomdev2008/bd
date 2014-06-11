@@ -42,6 +42,7 @@ public class DataElementServiceImpl implements DataElementService {
 	private DataDefinitionStoreService dataDefinitionStoreService;
 	@Autowired
 	private BdDataSourceFactory bdDataSourceFactory;
+	
 	@Override
 	public List<DataElementGroupDto> query(String repId) {
 		DetachedCriteria dc = this.dataElementGroupDao.createDetachedCriteria();

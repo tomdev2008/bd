@@ -1,4 +1,4 @@
-package com.changhong.bd.core.runner;
+package com.changhong.bd.test.support.runner;
 
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;

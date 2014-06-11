@@ -373,5 +373,6 @@
 		<module>bd-spider</module>
 		<module>bd-mingwang</module>
 		<module>bd-pay</module>
+		<module>bd-test-support</module>
 	</modules>
 </project>

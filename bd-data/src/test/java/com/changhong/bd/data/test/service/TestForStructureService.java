@@ -13,13 +13,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.changhong.bd.core.runner.AbstractTestRunner;
 import com.changhong.bd.data.domain.DbTableDto;
 import com.changhong.bd.data.domain.TableColumnDto;
 import com.changhong.bd.data.entity.DataRepositoryEntity;
 import com.changhong.bd.data.service.api.BdDataSourceFactory;
 import com.changhong.bd.data.service.api.DataDefinitionStoreService;
 import com.changhong.bd.data.service.api.DbStructureService;
+import com.changhong.bd.test.support.runner.AbstractTestRunner;
 
 /**
  * @author QiYao  yao.qi@changhong.com

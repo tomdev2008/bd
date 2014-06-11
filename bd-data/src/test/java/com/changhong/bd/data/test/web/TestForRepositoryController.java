@@ -7,7 +7,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.changhong.bd.core.runner.AbstractWebTestRunner;
+import com.changhong.bd.test.support.runner.AbstractWebTestRunner;
 
 /**
  * @author QiYao  yao.qi@changhong.com

@@ -8,12 +8,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.changhong.bd.core.resp.JsonData;
-import com.changhong.bd.core.runner.AbstractTestRunner;
 import com.changhong.bd.data.domain.DataElementGroupDto;
 import com.changhong.bd.data.domain.RepositoryDto;
 import com.changhong.bd.data.entity.DataElementGroupEntity;
 import com.changhong.bd.data.service.api.DataDefinitionStoreService;
 import com.changhong.bd.data.service.api.DataElementService;
+import com.changhong.bd.test.support.runner.AbstractTestRunner;
 
 /**
  * @author QiYao  yao.qi@changhong.com

@@ -1,4 +1,4 @@
-package com.changhong.bd.core.runner;
+package com.changhong.bd.test.support.runner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,13 +30,19 @@ public class AbstractTestRunner extends AbstractJUnit4SpringContextTests {
 	 * @param ra
 	 * @throws Exception
 	 */
-	public void ajaxOut(ResultActions ra ) throws Exception{
-		ra.andExpect(MockMvcResultMatchers.status().isOk())
-        .andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"));
-  	
-		MvcResult mr = ra.andReturn();
-		String result = mr.getResponse().getContentAsString();
-		out(result);
+	public void ajaxOut(ResultActions ra ){
+		try{
+
+			ra.andExpect(MockMvcResultMatchers.status().isOk())
+	        .andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"));
+	  	
+			MvcResult mr = ra.andReturn();
+			String result = mr.getResponse().getContentAsString();
+			out(result);
+		}catch(Exception e){
+			RuntimeException re = new RuntimeException(e);
+			throw re;
+		}
 	}
 	/**
 	 * 文本输出
@@ -48,8 +54,8 @@ public class AbstractTestRunner extends AbstractJUnit4SpringContextTests {
 			String s = om.writeValueAsString(o);
 			logger.info(s);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			RuntimeException re = new RuntimeException(e);
+			throw re;
 		}
 	}
 }
