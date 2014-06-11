@@ -6,3 +6,4 @@ bd-pay/.classpath
 .idea/
 bd-mingwang/src/main/resources/jdbc.properties
 web/node_modules/
+bd-test-support/.classpath

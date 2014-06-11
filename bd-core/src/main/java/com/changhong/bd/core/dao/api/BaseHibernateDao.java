@@ -128,7 +128,8 @@ public interface BaseHibernateDao<T extends Serializable, PK extends Serializabl
 
 	// 使用指定的检索标准获取满足标准的记录数
 	public abstract Long queryRowCount(DetachedCriteria criteria);
-
+	//查询全部的统计
+	public abstract Long queryRowCount();
 	// 使用指定的检索标准检索数据，返回指定统计值(max,min,avg,sum)
 	public abstract Object getStatValue(DetachedCriteria criteria, String propertyName, String StatName);
 

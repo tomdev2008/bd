@@ -292,6 +292,13 @@ public abstract class BaseHibernateDaoImpl<T extends Serializable, PK extends Se
         List list = this.queryByCriteria(criteria, 0, 1);
         return (Long) list.get(0);
     }
+    //统计全部数据
+    public Long queryRowCount(){
+    	DetachedCriteria criteria = this.createDetachedCriteria();
+    	criteria.setProjection(Projections.rowCount());
+        List list = this.queryByCriteria(criteria, 0, 1);
+        return (Long) list.get(0);
+    }
 
     // 使用指定的检索标准检索数据，返回指定统计值(max,min,avg,sum)
     public Object getStatValue(DetachedCriteria criteria, String propertyName,
