@@ -27,7 +27,7 @@ public class DataElementGroupEntity extends AbsTxNameEntity{
 	//归属仓库
 	@ManyToOne
 	@JoinColumn(name="repid")
-	private RepositoryEntity rep;
+	private DataRepositoryEntity rep;
 	
 	//处理语句  就是sql, 长文本字段
 	@Column(name="processlanguage")
@@ -36,11 +36,11 @@ public class DataElementGroupEntity extends AbsTxNameEntity{
 	@OneToMany(mappedBy="group",cascade=CascadeType.ALL)
 	private List<DataElementEntity> dataElements;
 
-	public RepositoryEntity getRep() {
+	public DataRepositoryEntity getRep() {
 		return rep;
 	}
 
-	public void setRep(RepositoryEntity rep) {
+	public void setRep(DataRepositoryEntity rep) {
 		this.rep = rep;
 	}
 

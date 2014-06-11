@@ -25,10 +25,24 @@ public class DataElementController {
 
 	@Autowired
 	private DataElementService dataElementService;
-	
+	/**
+	 * 根据数据仓库查询数据元素集合
+	 * @param repId
+	 * @return
+	 */
 	@RequestMapping(value="/{repId}",method=RequestMethod.GET, produces=Produces.JSON_STRING)
 	@ResponseBody
 	public List<DataElementGroupDto> query(@PathVariable(value="repId") String repId){
 		return this.dataElementService.query(repId);
+	}
+	
+	/**
+	 * 查询所有的数据元素集合
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.GET, produces=Produces.JSON_STRING)
+	@ResponseBody
+	public List<DataElementGroupDto> queryAll(){
+		return this.dataElementService.query();
 	}
 }

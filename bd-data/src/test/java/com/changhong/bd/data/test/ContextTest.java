@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.changhong.bd.data.domain.DbTableDto;
 import com.changhong.bd.data.domain.TableColumnDto;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 import com.changhong.bd.data.service.api.BdDataSourceFactory;
 import com.changhong.bd.data.service.api.DataDefinitionStoreService;
 import com.changhong.bd.data.service.api.DbStructureService;
@@ -57,7 +57,7 @@ public class ContextTest extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testGetDbStructure() throws SQLException, JsonGenerationException, JsonMappingException, IOException {
-		RepositoryEntity entity = new RepositoryEntity();
+		DataRepositoryEntity entity = new DataRepositoryEntity();
 		entity.setDriver("com.mysql.jdbc.Driver");
 		entity.setUrl("jdbc:mysql://localhost:3306/bd_weixin?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true");
 		entity.setUsername("tony");

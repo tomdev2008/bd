@@ -19,7 +19,7 @@ import com.changhong.bd.data.dao.api.DataElementGroupDao;
 import com.changhong.bd.data.domain.DataElementGroupDto;
 import com.changhong.bd.data.entity.DataElementEntity;
 import com.changhong.bd.data.entity.DataElementGroupEntity;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 import com.changhong.bd.data.service.api.BdDataSourceFactory;
 import com.changhong.bd.data.service.api.DataDefinitionStoreService;
 import com.changhong.bd.data.service.api.DataElementService;
@@ -46,7 +46,7 @@ public class DataElementServiceImpl implements DataElementService {
 	public List<DataElementGroupDto> query(String repId) {
 		DetachedCriteria dc = this.dataElementGroupDao.createDetachedCriteria();
 		
-		RepositoryEntity rep = new RepositoryEntity();
+		DataRepositoryEntity rep = new DataRepositoryEntity();
 		rep.setId(repId);
 		
 		dc.add(Restrictions.eq("rep", rep));
@@ -67,7 +67,7 @@ public class DataElementServiceImpl implements DataElementService {
 	@Override
 	@Transactional(readOnly=false)
 	public DataElementGroupEntity addSqlDataElement(String name, String sql, String repId) throws SQLException{
-		RepositoryEntity rep = this.dataDefinitionStoreService.query(repId);
+		DataRepositoryEntity rep = this.dataDefinitionStoreService.query(repId);
 		Statement statement = this.bdDataSourceFactory.queryStatement(rep);
 		ResultSet rs = statement.executeQuery(sql);
 		ResultSetMetaData rsmd = rs.getMetaData();
@@ -122,6 +122,22 @@ public class DataElementServiceImpl implements DataElementService {
 			}
 		}
 		this.dataElementGroupDao.deleteByKey(id);
+	}
+
+	public List<DataElementGroupDto> transfer(List<DataElementGroupEntity> liste){
+		List<DataElementGroupDto> listd = new ArrayList<DataElementGroupDto>();
+		if(null!=liste && liste.size()>0){
+			for(DataElementGroupEntity e:liste){
+				DataElementGroupDto d = new DataElementGroupDto(e);
+				listd.add(d);
+			}
+		}
+		return listd;
+	}
+	@Override
+	public List<DataElementGroupDto> query() {
+		List<DataElementGroupEntity> liste = this.dataElementGroupDao.queryAll();
+		return this.transfer(liste);
 	}
 
 }

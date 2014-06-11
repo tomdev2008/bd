@@ -2,7 +2,7 @@ package com.changhong.bd.data.domain;
 
 import java.io.Serializable;
 
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -15,7 +15,7 @@ public class DbTableDto implements Serializable{
 	private static final long serialVersionUID = 8870820379196084010L;
 
 	//所属仓库
-	private RepositoryEntity rep;
+	private DataRepositoryEntity rep;
 	private String tableCatalog = "";
 	private String tableSchema = "";
 	private String tableName = "";
@@ -26,7 +26,7 @@ public class DbTableDto implements Serializable{
 		super();
 	}
 	public DbTableDto(
-			RepositoryEntity rep,
+			DataRepositoryEntity rep,
 			String tableCatalog, 
 			String tableSchema,
 			String tableName,
@@ -74,10 +74,10 @@ public class DbTableDto implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public RepositoryEntity getRep() {
+	public DataRepositoryEntity getRep() {
 		return rep;
 	}
-	public void setRep(RepositoryEntity rep) {
+	public void setRep(DataRepositoryEntity rep) {
 		this.rep = rep;
 	}
 	

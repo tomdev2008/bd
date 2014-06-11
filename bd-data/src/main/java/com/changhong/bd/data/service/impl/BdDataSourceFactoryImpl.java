@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Service;
 
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 import com.changhong.bd.data.service.api.BdDataSourceFactory;
 
 /**
@@ -38,7 +38,7 @@ public class BdDataSourceFactoryImpl implements BdDataSourceFactory {
 	 * @see com.changhong.bd.data.service.impl.BdDataSourceFactory#getDataSource(com.changhong.bd.data.entity.RepositoryEntity)
 	 */
 	@Override
-	public DataSource queryDataSource(RepositoryEntity entity){
+	public DataSource queryDataSource(DataRepositoryEntity entity){
 		DriverManagerDataSource ds = dsPool.get(entity.getId());
 		if(null == ds){
 			String key = entity.getId();
@@ -63,7 +63,7 @@ public class BdDataSourceFactoryImpl implements BdDataSourceFactory {
 	 * @see com.changhong.bd.data.service.impl.BdDataSourceFactory#getCollection(com.changhong.bd.data.entity.RepositoryEntity)
 	 */
 	@Override
-	public Connection queryCollection(RepositoryEntity entity){
+	public Connection queryCollection(DataRepositoryEntity entity){
 		DataSource ds = this.queryDataSource(entity);
 		Connection conn = null;
 		String key = entity.getId();
@@ -76,7 +76,7 @@ public class BdDataSourceFactoryImpl implements BdDataSourceFactory {
 		return conn;
 	}
 	@Override
-	public Statement queryStatement(RepositoryEntity entity) throws SQLException {
+	public Statement queryStatement(DataRepositoryEntity entity) throws SQLException {
 		Connection conn = this.queryCollection(entity);
 		Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		return statement;

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.changhong.bd.core.resp.JsonData;
 import com.changhong.bd.data.dao.api.RepositoryEntityDao;
 import com.changhong.bd.data.domain.RepositoryDto;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 import com.changhong.bd.data.service.api.DataDefinitionStoreService;
 
 /**
@@ -42,12 +42,12 @@ public class DataDefinitionStoreServiceImpl implements DataDefinitionStoreServic
 		}
 		
 		criteria.addOrder(Order.desc("name"));
-		List<RepositoryEntity> liste = this.repositoryEntityDao.queryByCriteria(criteria );
+		List<DataRepositoryEntity> liste = this.repositoryEntityDao.queryByCriteria(criteria );
 		Long count = this.repositoryEntityDao.queryRowCount(criteria);
 		
 		List<RepositoryDto> listd = new ArrayList<RepositoryDto>();
 		if(liste != null && liste.size()>0){
-			for(RepositoryEntity e:liste){
+			for(DataRepositoryEntity e:liste){
 				listd.add(modelMapper.map(e, RepositoryDto.class));
 			}
 		}
@@ -57,7 +57,7 @@ public class DataDefinitionStoreServiceImpl implements DataDefinitionStoreServic
 	}
 
 	@Override
-	public RepositoryEntity query(String id) {
+	public DataRepositoryEntity query(String id) {
 		return this.repositoryEntityDao.query(id);
 	}
 

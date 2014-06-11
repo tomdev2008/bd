@@ -14,7 +14,7 @@ import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
  */
 @Entity
 @Table(name="data_repository")
-public class RepositoryEntity extends AbsTxNameEntity{
+public class DataRepositoryEntity extends AbsTxNameEntity{
 
 	private static final long serialVersionUID = 6570950348100915699L;
 

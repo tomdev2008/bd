@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -21,14 +21,14 @@ public interface BdDataSourceFactory {
 	 * @param entity
 	 * @throws  
 	 */
-	public abstract DataSource queryDataSource(RepositoryEntity entity);
+	public abstract DataSource queryDataSource(DataRepositoryEntity entity);
 
 	/**
 	 * 获取数据库连接
 	 * @param entity
 	 * @return
 	 */
-	public abstract Connection queryCollection(RepositoryEntity entity);
+	public abstract Connection queryCollection(DataRepositoryEntity entity);
 
 	/**
 	 * 获取statement
@@ -36,5 +36,5 @@ public interface BdDataSourceFactory {
 	 * @return
 	 * @throws SQLException 
 	 */
-	public abstract Statement queryStatement(RepositoryEntity entity) throws SQLException;
+	public abstract Statement queryStatement(DataRepositoryEntity entity) throws SQLException;
 }

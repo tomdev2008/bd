@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.changhong.bd.data.domain.DbTableDto;
 import com.changhong.bd.data.domain.TableColumnDto;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 import com.changhong.bd.data.service.api.BdDataSourceFactory;
 import com.changhong.bd.data.service.api.DbStructureService;
 
@@ -35,7 +35,7 @@ public class DbStructureServiceImpl implements DbStructureService{
 	
 	@Override
 	public List<TableColumnDto> queryColumns(DbTableDto tableDomain){
-		RepositoryEntity rep = tableDomain.getRep();
+		DataRepositoryEntity rep = tableDomain.getRep();
 		Connection conn = this.bdDataSourceFactory.queryCollection(rep);
 		String schema = rep.getSchema();
 		String table = tableDomain.getTableName();
@@ -118,7 +118,7 @@ public class DbStructureServiceImpl implements DbStructureService{
 	}
 	
 	@Override
-	public List<DbTableDto> queryAllIndex(RepositoryEntity rep) throws SQLException {
+	public List<DbTableDto> queryAllIndex(DataRepositoryEntity rep) throws SQLException {
 		Connection conn = this.bdDataSourceFactory.queryCollection(rep);
 		
 		List<DbTableDto> list = new ArrayList<DbTableDto>();
@@ -151,7 +151,7 @@ public class DbStructureServiceImpl implements DbStructureService{
 		return list;
 	}
 	@Override
-	public List<TableColumnDto> queryColumns(RepositoryEntity rep, String tableName) throws SQLException {
+	public List<TableColumnDto> queryColumns(DataRepositoryEntity rep, String tableName) throws SQLException {
 		Connection conn = this.bdDataSourceFactory.queryCollection(rep);
 		
 		List<DbTableDto> list = new ArrayList<DbTableDto>();

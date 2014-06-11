@@ -1,7 +1,7 @@
 package com.changhong.bd.data.dao.api;
 
 import com.changhong.bd.core.dao.api.BaseHibernateDao;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -9,6 +9,6 @@ import com.changhong.bd.data.entity.RepositoryEntity;
  * @version 1.0
  * @description : 数据仓库Dao 接口
  */
-public interface RepositoryEntityDao extends BaseHibernateDao<RepositoryEntity, String>{
+public interface RepositoryEntityDao extends BaseHibernateDao<DataRepositoryEntity, String>{
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.changhong.bd.data.domain.DbTableDto;
 import com.changhong.bd.data.domain.TableColumnDto;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -21,7 +21,7 @@ public interface DbStructureService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<DbTableDto> queryAllIndex(RepositoryEntity rep) throws SQLException;
+	public List<DbTableDto> queryAllIndex(DataRepositoryEntity rep) throws SQLException;
 	
 	/**
 	 * 查询表的字段
@@ -36,5 +36,5 @@ public interface DbStructureService {
 	 * @return
 	 * @throws SQLException 
 	 */
-	public List<TableColumnDto> queryColumns(RepositoryEntity rep, String tableName) throws SQLException;
+	public List<TableColumnDto> queryColumns(DataRepositoryEntity rep, String tableName) throws SQLException;
 }

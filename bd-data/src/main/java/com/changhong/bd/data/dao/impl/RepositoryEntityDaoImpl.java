@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.changhong.bd.core.dao.impl.abs.MainHibernateDao;
 import com.changhong.bd.data.dao.api.RepositoryEntityDao;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -13,7 +13,7 @@ import com.changhong.bd.data.entity.RepositoryEntity;
  * @description : 
  */
 @Repository("repositoryEntityDao")
-public class RepositoryEntityDaoImpl extends MainHibernateDao<RepositoryEntity, String>
+public class RepositoryEntityDaoImpl extends MainHibernateDao<DataRepositoryEntity, String>
 	implements RepositoryEntityDao{
 
 }

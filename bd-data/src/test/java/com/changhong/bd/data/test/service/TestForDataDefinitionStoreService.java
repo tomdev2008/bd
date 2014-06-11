@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.changhong.bd.core.resp.JsonData;
 import com.changhong.bd.data.domain.RepositoryDto;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 import com.changhong.bd.data.service.api.DataDefinitionStoreService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,7 +45,7 @@ public class TestForDataDefinitionStoreService
 	
 	@Test
 	public void testQueryById(){
-		RepositoryEntity e = this.dataDefinitionStoreService.query("01");
+		DataRepositoryEntity e = this.dataDefinitionStoreService.query("01");
 		out(e);
 		e = this.dataDefinitionStoreService.query("lqbz");
 		out(e);

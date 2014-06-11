@@ -32,4 +32,9 @@ public interface DataElementService {
 	 * @param id
 	 */
 	public void deleteSqlDataElement(String id);
+	/**
+	 * 查询所有的数据元素集合
+	 * @return
+	 */
+	public List<DataElementGroupDto> query();
 }

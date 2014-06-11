@@ -2,7 +2,7 @@ package com.changhong.bd.data.service.api;
 
 import com.changhong.bd.core.resp.JsonData;
 import com.changhong.bd.data.domain.RepositoryDto;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -23,5 +23,5 @@ public interface DataDefinitionStoreService {
 	 * @param id
 	 * @return
 	 */
-	public RepositoryEntity query(String id);
+	public DataRepositoryEntity query(String id);
 }

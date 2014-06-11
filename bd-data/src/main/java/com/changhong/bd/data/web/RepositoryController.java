@@ -15,7 +15,7 @@ import com.changhong.bd.core.resp.Produces;
 import com.changhong.bd.data.domain.DbTableDto;
 import com.changhong.bd.data.domain.RepositoryDto;
 import com.changhong.bd.data.domain.TableColumnDto;
-import com.changhong.bd.data.entity.RepositoryEntity;
+import com.changhong.bd.data.entity.DataRepositoryEntity;
 import com.changhong.bd.data.service.api.DataDefinitionStoreService;
 import com.changhong.bd.data.service.api.DbStructureService;
 
@@ -52,7 +52,7 @@ public class RepositoryController {
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces=Produces.JSON_STRING)
 	@ResponseBody
 	public List<DbTableDto> queryTableInfo(@PathVariable(value="id") String id) throws SQLException{
-		RepositoryEntity re = this.dataDefinitionStoreService.query(id);
+		DataRepositoryEntity re = this.dataDefinitionStoreService.query(id);
 		if(re == null){
 			return null;
 		}else{
@@ -71,7 +71,7 @@ public class RepositoryController {
 			@PathVariable(value="tableName") String tableName
 			) throws SQLException{
 		
-		RepositoryEntity rep = this.dataDefinitionStoreService.query(id);
+		DataRepositoryEntity rep = this.dataDefinitionStoreService.query(id);
 		List<TableColumnDto> cols = dbStructureService.queryColumns(rep , tableName);
 		
 		return cols;
