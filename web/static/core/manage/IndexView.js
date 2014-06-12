@@ -48,6 +48,9 @@ define([
                  * @param opt.menuType 菜单类型, 1 requirejs模块加载类型 10 iframe
                  */
                 function(opt){
+                    if(!opt.parameter){
+                        opt.parameter = {};
+                    }
                     if(opt.menuType === 1){
                         if(!self.$loading){
                             self.$loading = new base.LoadingView({
@@ -57,7 +60,7 @@ define([
                             self.$loading.render();
                         }
                         requirejs([opt.value],function(View){
-                            view = new View();
+                            view = new View(opt.parameter);
                             view.render();
                             self.openRightView(view);
                             if(self.$loading){
