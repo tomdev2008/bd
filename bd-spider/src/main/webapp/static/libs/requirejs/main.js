@@ -6,7 +6,7 @@ function requirejsInit(path){
         urlArgs: "v=1.0.0",
         baseUrl:path,
         paths:{
-            "jquery":"static/libs/jquery/jquery-1.11.1.min",
+            "jquery":"static/libs/jquery/jquery-1.11.1",
             "jquery.prefilter":"static/libs/jquery/jquery.prefilter",
             "jquery.serializeJSON":"static/libs/jquery/jquery.serializeJSON",
             "bootstrap":"static/libs/bs/js/bootstrap",

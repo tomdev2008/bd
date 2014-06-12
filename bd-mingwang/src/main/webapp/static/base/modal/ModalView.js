@@ -1,6 +1,7 @@
 /**
  * Created by qiyao on 2014/6/11.
  * email : yao.qi@changhong.com
+ * TODO colse error
  */
 define([
     "underscore",
@@ -18,6 +19,12 @@ define([
         initialize:function(opt){
             this.opt = opt;
             this.$el.html(this.template(opt));
+
+            this.modal = $(this.$(".modal"));
+            this.listenTo(this.modal, "hidden.bs.modal", function(){
+                this.unRender();
+            });
+
         },
         beforeRender:function(){
             return this;
@@ -28,7 +35,6 @@ define([
 
             $("body").append(this.el);
 
-            this.modal = this.$(".modal");
             this.modal.modal({
                 backdrop:"static",
                 show:true
@@ -39,6 +45,9 @@ define([
             },0);
 
             return this;
+        },
+        close:function(){
+            this.modal.modal('hide');
         },
         postRender:function(){
             return this;

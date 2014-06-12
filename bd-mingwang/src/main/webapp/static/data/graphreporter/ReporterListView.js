@@ -23,6 +23,9 @@ define([
             this.listenTo(this.collection, "add", function(model){
                 this.addItem(model);
             });
+            this.listenTo(this.eb, "add:reporter",function(model){
+                this.collection.add(model);
+            });
             this.$el.html(this.template());
         },
         render:function(){
