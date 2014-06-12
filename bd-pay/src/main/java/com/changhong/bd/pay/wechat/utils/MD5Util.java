@@ -1,4 +1,4 @@
-package wxpay;
+package com.changhong.bd.pay.wechat.utils;
 import java.security.MessageDigest;
 public class MD5Util {
 	public final static String MD5(String s) {

@@ -1,4 +1,4 @@
-package wxpay;
+package com.changhong.bd.pay.wechat.utils;
 
 import java.util.*;
 import java.net.URLEncoder;

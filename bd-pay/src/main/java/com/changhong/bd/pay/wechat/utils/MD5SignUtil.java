@@ -1,4 +1,4 @@
-package wxpay;
+package com.changhong.bd.pay.wechat.utils;
 
 public class MD5SignUtil {
 	public static String Sign(String content, String key)

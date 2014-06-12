@@ -1,4 +1,4 @@
-package wxpay;
+package com.changhong.bd.pay.wechat.utils;
 
 public class Example {
 	 public static void main(String args[]) {
@@ -18,16 +18,16 @@ public class Example {
 			wxPayHelper.SetParameter("fee_type", "1");
 			wxPayHelper.SetParameter("notify_url", "htttp://www.baidu.com");
 			wxPayHelper.SetParameter("spbill_create_ip", "127.0.0.1");
-			wxPayHelper.SetParameter("input_charset", "GBK");
+			wxPayHelper.SetParameter("input_charset", "UTF-8");
 
-			System.out.println("生成app支付package:");
-			System.out.println(wxPayHelper.CreateAppPackage("test"));
 			System.out.println("生成jsapi支付package:");
 			System.out.println(wxPayHelper.CreateBizPackage());
-			System.out.println("生成原生支付url:");
-			System.out.println(wxPayHelper.CreateNativeUrl("abc"));
-			System.out.println("生成原生支付package:");
-			System.out.println(wxPayHelper.CreateNativePackage("0", "ok"));
+//			System.out.println("生成app支付package:");
+//			System.out.println(wxPayHelper.CreateAppPackage("test"));
+//			System.out.println("生成原生支付url:");
+//			System.out.println(wxPayHelper.CreateNativeUrl("abc"));
+//			System.out.println("生成原生支付package:");
+//			System.out.println(wxPayHelper.CreateNativePackage("0", "ok"));
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
