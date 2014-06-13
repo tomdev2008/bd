@@ -10,6 +10,7 @@ public class WechatUtils {
 	//TODO
 	public static final String APP_ID = "";
 	public static final String APP_SECRET = "";
+	//就是appkey
 	public static final String PAY_SIGN_KEY = "";
 	public static final String PARTNER_ID = "";
 	public static final String PARTNER_KEY = "";
@@ -30,5 +31,10 @@ public class WechatUtils {
 	}
 	public static String getPartnerKey(){
 		return PARTNER_KEY;
+	}
+
+	public static String getNotifyUrl() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
