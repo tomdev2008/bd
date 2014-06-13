@@ -15,4 +15,5 @@ public class Produces {
 	 * json
 	 */
 	public static final String JSON = "application/json";
+	public static final String UTF8 = "charset=utf-8";
 }
