@@ -31,5 +31,7 @@ public class RightsController {
 		InputStream is = request.getInputStream();
 		
 		Map<String,String> data = WechatXmlUtils.parseXml(is);
+		
+		return "success";
 	}
 }
