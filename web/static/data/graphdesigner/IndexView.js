@@ -4,24 +4,23 @@
  * 报表设计工具入口
  */
 define([
+    "./workspace/DesignSpace",
     "../../base/base",
-    "./ReporterModel"
-], function (base, ReporterModel) {
+    "./ReporterModel",
+    "css!./index.css"
+], function (DesignSpace, base, ReporterModel) {
     "use strict";
     var V = base.BaseView;
     return V.extend({
+        className:"graph-designer",
         initialize:function(opt){
             this.model = new ReporterModel({id:opt.reporterId});
-            this.listenTo(this.model, "change", function(){
-                this.fetched();
-            });
-            this.model.fetch();
         },
         render:function(){
+            this.$el.html(new DesignSpace({
+                model:this.model
+            }).render().el);
             return this;
-        },
-        fetched:function(){
-            this.$el.html(this.model.get("name"));
         }
     });
 });

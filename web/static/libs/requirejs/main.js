@@ -18,7 +18,15 @@ function requirejsInit(path){
             "echarts/chart/bar" : "static/libs/echart/build/echarts",
             "echarts/chart/line" : "static/libs/echart/build/echarts",
             "css": "static/libs/requirejs/css",
-            "normalize": "static/libs/requirejs/normalize"
+            "normalize": "static/libs/requirejs/normalize",
+            "jqueryui.core":"static/libs/jqueryui/jquery.ui.core",
+            "jqueryui.draggable":"static/libs/jqueryui/jquery.ui.draggable",
+            "jqueryui.droppable":"static/libs/jqueryui/jquery.ui.droppable",
+            "jqueryui.mouse":"static/libs/jqueryui/jquery.ui.mouse",
+            "jqueryui.position":"static/libs/jqueryui/jquery.ui.position",
+            "jqueryui.resizable":"static/libs/jqueryui/jquery.ui.resizable",
+            "jqueryui.sortable":"static/libs/jqueryui/jquery.ui.sortable",
+            "jqueryui.widget":"static/libs/jqueryui/jquery.ui.widget",
         },
 
         shim: {
@@ -31,7 +39,16 @@ function requirejsInit(path){
                 exports: 'Backbone'
             },
             "jquery.prefilter":["jquery"],
-            "jquery.serializeJSON":["jquery"]
+            "jquery.serializeJSON":["jquery"],
+            "jqueryui.core":["jquery"],
+            "jqueryui.widget":["jqueryui.core"],
+            "jqueryui.position":["jqueryui.core"],
+            "jqueryui.mouse":["jqueryui.widget"],
+            "jqueryui.sortable":["jqueryui.mouse"],
+            "jqueryui.resizable":["jqueryui.mouse"],
+            "jqueryui.draggable":["jqueryui.mouse"],
+            "jqueryui.droppable":["jqueryui.draggable"],
+
         }
 //        ,
 //        map: {
