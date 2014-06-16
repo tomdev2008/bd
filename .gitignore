@@ -7,3 +7,5 @@ bd-pay/.classpath
 bd-mingwang/src/main/resources/jdbc.properties
 web/node_modules/
 bd-test-support/.classpath
+bd-products/.classpath
+bd-products/.gitignore
