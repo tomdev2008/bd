@@ -55,6 +55,16 @@ public class GraphReporterController {
 		return this.dataReporterService.add(e);
 	}
 	/**
+	 * 更新
+	 * @param e
+	 * @return
+	 */
+	@RequestMapping(value="/{uid}",method=RequestMethod.PUT, produces=Produces.JSON_STRING)
+	@ResponseBody
+	public DataReporterDto update(@RequestBody DataReporterEntity e){
+		return this.dataReporterService.update(e);
+	}
+	/**
 	 * 查询单个报表的详细信息
 	 * @param id
 	 * @return

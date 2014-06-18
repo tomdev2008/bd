@@ -1,5 +1,8 @@
 package com.changhong.bd.data.test.service;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.apache.commons.beanutils.BeanUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +26,16 @@ public class TestForDataReporterService
 	private DataReporterService dataReporterService;
 	
 	private DataReporterDto dto;
+	
+	@Test
+	public void testForUpdate() throws IllegalAccessException, InvocationTargetException{
+		DataReporterEntity e = new DataReporterEntity();
+		BeanUtils.copyProperties(e, dto);
+		e.setName("滚你妹的");
+		this.dataReporterService.update(e);
+		e.setId("xxxxx");
+		this.dataReporterService.update(e);
+	}
 	@Test
 	public void testForQueryAll(){
 		out(this.dataReporterService.query());

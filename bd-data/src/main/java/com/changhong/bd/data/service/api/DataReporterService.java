@@ -34,4 +34,10 @@ public interface DataReporterService {
 	 * @param id
 	 */
 	public void delete(String id);
+	/**
+	 * 更新报表数据, 可以更新的数据是：
+	 * 报表名称，ui数据，data数据
+	 * @param e
+	 */
+	public DataReporterDto update(DataReporterEntity e);
 }

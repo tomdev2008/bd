@@ -67,5 +67,21 @@ public class DataReporterServiceImpl implements DataReporterService {
 	public void delete(String id) {
 		this.dataReporterDao.deleteByKey(id);		
 	}
+	@Override
+	@Transactional(readOnly=false)
+	public DataReporterDto update(DataReporterEntity e) {
+		DataReporterEntity old = this.dataReporterDao.query(e.getId());
+		if(null != old){
+			old.setDataconfig(e.getDataconfig());
+			old.setName(e.getName());
+			old.setUiconfig(e.getUiconfig());
+			
+			this.dataReporterDao.update(old);
+			DataReporterDto dto = new DataReporterDto(old);
+			return dto;
+		}else{
+			return null;
+		}
+	}
 
 }
