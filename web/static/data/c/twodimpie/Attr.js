@@ -10,8 +10,10 @@ define([
     var M = B.Model;
     return M.extend({
         defaults: {
-            "width":  "caesar salad",
-            "height": "ravioli"
+            "width":  "200",
+            "height": "200",
+            "top":"0",
+            "left":"0"
         }
     });
 });
