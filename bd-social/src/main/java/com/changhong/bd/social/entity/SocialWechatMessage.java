@@ -29,7 +29,7 @@ public class SocialWechatMessage extends AbsEntity {
 	private String userId = "";
 	
 	@Column(name="indate")
-	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime inDate = new DateTime();
 	
 	//4个消息字段，可能为空的

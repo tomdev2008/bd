@@ -34,7 +34,7 @@ public class SpiderClassifiedNews extends AbsSpiderEntity{
 	private String category;
 	
 	@Column(name="classifydate")
-	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime classifyDate;
 	
 	@Column(name="isrecommend")
@@ -42,7 +42,7 @@ public class SpiderClassifiedNews extends AbsSpiderEntity{
 	private Integer isRecommend;
 	
 	@Column(name="recommendtime")
-	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime recommendTime;
 
 	public String getTitle() {

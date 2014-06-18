@@ -28,7 +28,7 @@
 		<property name="password" value="nutch2014" />
 	</bean>
 
-	<bean id="spiderSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	<bean id="spiderSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="spiderDataSource" />
 		<property name="hibernateProperties">
 			<props>
@@ -47,11 +47,11 @@
 	</bean>
 
 	<!-- hibernateTemplate -->
-	<bean id="spiderHibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	<bean id="spiderHibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
 		<property name="sessionFactory" ref="spiderSessionFactory"></property>
 	</bean>
 
-	<bean id="spiderTxManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<bean id="spiderTxManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="spiderSessionFactory" />
 	</bean>
 </beans>

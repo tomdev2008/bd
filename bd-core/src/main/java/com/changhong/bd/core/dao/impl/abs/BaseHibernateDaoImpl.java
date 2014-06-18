@@ -121,7 +121,10 @@ public abstract class BaseHibernateDaoImpl<T extends Serializable, PK extends Se
 
     // 增加或更新集合中的全部实体
     public void saveOrUpdateAll(Collection<T> entities) {
-        getHibernateTemplate().saveOrUpdateAll(entities);
+    	for(T t:entities){
+    		getHibernateTemplate().saveOrUpdate(t);
+    	}
+        
     }
 
     // 删除指定的实体
@@ -164,35 +167,35 @@ public abstract class BaseHibernateDaoImpl<T extends Serializable, PK extends Se
 
     // 使用HSQL语句检索数据
     public List<T> queryHql(String queryString) {
-        return getHibernateTemplate().find(queryString);
+        return this.query(queryString, null);
     }
 
     // 使用带参数的HSQL语句检索数据
     public List<T> query(String queryString, Object[] values) {
-        return getHibernateTemplate().find(queryString, values);
+        return (List<T>)getHibernateTemplate().find(queryString, values);
     }
 
     // 使用带命名的参数的HSQL语句检索数据
     public List<T> queryByNamedParam(String queryString, String[] paramNames,
             Object[] values) {
-        return getHibernateTemplate().findByNamedParam(queryString, paramNames,
+        return (List<T>)getHibernateTemplate().findByNamedParam(queryString, paramNames,
                 values);
     }
 
     // 使用命名的HSQL语句检索数据
     public List<T> queryByNamedQuery(String queryName) {
-        return getHibernateTemplate().findByNamedQuery(queryName);
+        return (List<T>)getHibernateTemplate().findByNamedQuery(queryName);
     }
 
     // 使用带参数的命名HSQL语句检索数据
     public List<T> queryByNamedQuery(String queryName, Object[] values) {
-        return getHibernateTemplate().findByNamedQuery(queryName, values);
+        return (List<T>)getHibernateTemplate().findByNamedQuery(queryName, values);
     }
 
     // 使用带命名参数的命名HSQL语句检索数据
     public List<T> queryByNamedQueryAndNamedParam(String queryName,
             String[] paramNames, Object[] values) {
-        return getHibernateTemplate().findByNamedQueryAndNamedParam(queryName,
+        return (List<T>)getHibernateTemplate().findByNamedQueryAndNamedParam(queryName,
                 paramNames, values);
     }
 

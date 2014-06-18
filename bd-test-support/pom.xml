@@ -14,7 +14,7 @@
 	<build>
 
 		<defaultGoal>install</defaultGoal>
-		<finalName>bd-data</finalName>
+		<finalName>bd-test-support</finalName>
 
 		<plugins>
 			<plugin>

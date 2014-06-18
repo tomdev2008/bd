@@ -43,7 +43,7 @@ public class SocialBind extends AbsTxEntity{
 	 * 绑定时间
 	 */
 	@Column(name="binddate")
-	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime bindDate = new DateTime();
 	
 	public DateTime getBindDate() {
