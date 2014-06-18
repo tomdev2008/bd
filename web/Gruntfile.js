@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-
+    "use strict";
     // 配置Grunt各种模块的参数
     grunt.initConfig({
         copy:  {
@@ -8,10 +8,10 @@ module.exports = function(grunt) {
                 src: ["static/**", "!static/libs/echart/src/**"],
                 dest:"../bd-spider/src/main/webapp/"
             },
-            mingwang:{
+            loteste:{
                 expand: true,
                 src: ["static/**", "!static/libs/echart/src/**"],
-                dest:"../bd-mingwang/src/main/webapp/"
+                dest:"../bd-loteste/src/main/webapp/"
             }
         }
     });
