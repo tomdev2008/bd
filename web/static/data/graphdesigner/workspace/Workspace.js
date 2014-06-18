@@ -9,7 +9,7 @@ define([
     "use strict";
     var V = base.BaseView;
     return V.extend({
-
+        className:"design-workspace",
         render:function(){
             return this;
         },

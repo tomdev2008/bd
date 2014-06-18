@@ -21,9 +21,6 @@ define([
         },
         initialize:function(){
             this.eb = _.extend({}, B.Events);
-            this.listenTo(this.model,"change",function(){
-                this.fetched();
-            });
             this.$el.html(this.template());
 
             this.$left = this.$(".design-left");
@@ -48,21 +45,46 @@ define([
             this.addEbEvent();
         },
         render:function(){
-            this.model.fetch();
+            var self = this;
+            this.model.fetch({
+                success:function(){
+                    self.fetched();
+                }
+            });
             return this;
         },
         fetched:function(){
-
+            var self = this,
+                dataconfig = this.model.get("dataconfig"),
+                array;
+            if(dataconfig){
+                array = JSON.parse(dataconfig);
+                if(array.length > 0){
+                    _.each(array,function(item){
+                        self.eb.trigger("add:uic", item);
+                    });
+                }
+            }
         },
         save:function(){
-            console.log("save");
+            var datas = [];
+            this.$(".data-c").each(function(){
+                var v = $(this).data("data-c"),
+                    vd = {
+                        Path:v.constructor.Path,
+                        attr:v.model.toJSON()
+                    };
+                datas.push(vd);
+            });
+            this.model.set("dataconfig", JSON.stringify(datas));
+            this.model.save();
         },
         addEbEvent:function(){
             var self = this;
             //向面板添加组件
             this.listenTo(this.eb, "add:uic", function(opt){
                 requirejs([opt.Path+"DesignView"],function(C){
-                    var view = new C();
+                    var view = new C(opt);
                     view.render();
                     self.center.add(view);
                 });

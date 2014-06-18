@@ -17,6 +17,7 @@ define([
         template: _.template(tpl,null,{variable:"args"}),
         className:"sign-in",
         events:{
+            "keydown input":"onKeydown",
             "click .btn-sign":"onSign"
         },
         render:function(){
@@ -24,6 +25,11 @@ define([
             this.$account = this.$(".input-account");
             this.$password = this.$(".input-password");
             return this;
+        },
+        onKeydown:function(e){
+            if(e.keyCode === 13){
+                this.onSign();
+            }
         },
         onSign:function(){
             var account = this.$account.val(),

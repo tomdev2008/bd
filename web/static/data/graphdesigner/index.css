@@ -7,6 +7,9 @@
   width: 1280px;
   height: 800px;
 }
+.graph-designer .design-workspace {
+  height: 900px;
+}
 .graph-designer.inner {
   width: 100%;
   position: relative;

@@ -14,9 +14,12 @@ function requirejsInit(path){
             "text":"static/libs/requirejs/text",
             "underscore":"static/libs/app/underscore",
             "backbone":"static/libs/app/backbone",
+
             "echarts" : "static/libs/echart/build/echarts",
             "echarts/chart/bar" : "static/libs/echart/build/echarts",
             "echarts/chart/line" : "static/libs/echart/build/echarts",
+            "echarts/chart/pie" : "static/libs/echart/build/echarts",
+
             "css": "static/libs/requirejs/css",
             "normalize": "static/libs/requirejs/normalize",
             "jqueryui.core":"static/libs/jqueryui/jquery.ui.core",
