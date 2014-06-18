@@ -2,13 +2,15 @@
  *
  */
 define([
+    "underscore",
     "backbone",
     "./views/BaseView",
     "./modal/ModalView",
     "./modal/InfoModalView",
     "./views/LoadingView",
     "css!./base.css"
-], function (B,
+], function (_,
+             B,
              BaseView,
              ModalView,
              InfoModalView,
@@ -16,6 +18,7 @@ define([
     "use strict";
     var col = {
         //Backbone
+        _:_,
         B:B,
         //基类
         BaseView: BaseView,

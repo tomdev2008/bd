@@ -1,0 +1,9 @@
+.two-dim-pie {
+  padding: 5px;
+}
+.two-dim-pie .chart-inner {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
