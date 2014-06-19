@@ -1,0 +1,20 @@
+.graph-reporter .reporter-item {
+  width: 160px;
+  height: 200px;
+  float: left;
+  margin: 10px;
+}
+.graph-reporter .reporter-item .add-btn {
+  text-align: center;
+}
+.graph-reporter .reporter-item .add-btn .glyphicon {
+  margin-top: 40px;
+  font-size: 50px;
+}
+.graph-reporter .reporter-item .img-thumbnail {
+  height: 140px;
+  width: 140px;
+}
+.graph-reporter .reporter-item .glyphicon {
+  font-size: 16px;
+}
