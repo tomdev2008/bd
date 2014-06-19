@@ -45,10 +45,10 @@ public class WechatController {
 			@RequestParam(value="nonce") String nonce,
 			@RequestParam(value="echostr") String echostr){
 		
-		logger.info("signature:"+signature);
-		logger.info("timestamp:"+timestamp);
-		logger.info("nonce:"+nonce);
-		logger.info("echostr:"+echostr);
+		logger.debug("signature:"+signature);
+		logger.debug("timestamp:"+timestamp);
+		logger.debug("nonce:"+nonce);
+		logger.debug("echostr:"+echostr);
 		
 		if(WechatSignUtils.checkSignature(signature, timestamp, nonce)){
 			logger.info("wechat validated success");
@@ -73,14 +73,14 @@ public class WechatController {
 			@RequestParam(value="nonce") String nonce,
 			HttpServletRequest request) throws DocumentException, IOException{
 		
-		logger.info("msg in 2");
+		logger.debug("msg in 2");
 		// 将解析结果存储在HashMap中
 		if(WechatSignUtils.checkSignature(signature, timestamp, nonce)){
 			InputStream is = request.getInputStream();
 			String msg = this.wechatService.process(is);
 			return msg;
 		}else{
-			logger.info("wechat validate fail");
+			logger.debug("wechat validate fail");
 			return "";
 		}
 	}
