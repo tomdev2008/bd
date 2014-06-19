@@ -1,0 +1,23 @@
+@DesignWidth:1280px;
+@DesignHeight:800px;
+
+@Workspace_Design_Height : 900px;
+.graph-designer{
+  position: relative;
+  display: block;
+  .design-space{
+    position: absolute;
+    width: @DesignWidth;
+    height: @DesignHeight;
+  }
+
+  .design-workspace{
+    height: @Workspace_Design_Height;
+  }
+
+  &.inner{
+    width: 100%;
+    position: relative;
+    display: block;
+  }
+}
