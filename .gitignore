@@ -9,3 +9,9 @@ web/node_modules/
 bd-test-support/.classpath
 bd-products/.classpath
 bd-products/.gitignore
+bd-loteste/.classpath
+bd-loteste/.gitignore
+bd-lotaste/.classpath
+bd-lotaste/.gitignore
+bd-lotaste/src/main/webapp/static/libs/bs/js/.jscs.json
+bd-lotaste/src/main/webapp/static/libs/bs/js/.jshintrc

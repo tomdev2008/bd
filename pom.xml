@@ -376,6 +376,6 @@
 		<module>bd-pay</module>
 		<module>bd-test-support</module>
 		<module>bd-products</module>
-		<module>bd-loteste</module>
+		<module>bd-lotaste</module>
 	</modules>
 </project>
