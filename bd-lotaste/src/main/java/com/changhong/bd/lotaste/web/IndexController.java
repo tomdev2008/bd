@@ -1,4 +1,4 @@
-package com.changhong.bd.loteste.web;
+package com.changhong.bd.lotaste.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
