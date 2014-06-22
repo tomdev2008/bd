@@ -1,10 +1,9 @@
-package com.changhong.bd.social.parser;
+package com.changhong.bd.social.wechat.parser;
 
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.changhong.bd.social.utils.WechatMessageUtils;
 import com.changhong.bd.social.wechat.message.in.BaseEventMessage;
 import com.changhong.bd.social.wechat.message.in.BaseInMessage;
 import com.changhong.bd.social.wechat.message.in.ClickEventMessage;
@@ -14,10 +13,10 @@ import com.changhong.bd.social.wechat.message.in.TextInMessage;
  * @author QiYao  yao.qi@changhong.com
  * @date 2014年5月15日
  * @version 1.0
- * @description : 微信信息处理器 TODO
+ * @description : 微信信息处理器
  */
 @Service("wechatMessageParser")
-public class WechatMessageParser {
+public class InMessageObjectParser {
 
 	/**
 	 * 将Map数据转为对象数据
@@ -40,22 +39,16 @@ public class WechatMessageParser {
 		msg.setMsgType(msgType);
 		msg.setCreateTime(Long.valueOf(createTime));
 		
-		if (msgType.equals(WechatMessageUtils.REQ_MESSAGE_TYPE_TEXT)) {
-			TextInMessage tim = parseTextMessage(msg, map);
-			return tim;
-		}else if (msgType.equals(WechatMessageUtils.REQ_MESSAGE_TYPE_EVENT)) {
-			BaseEventMessage em = new BaseEventMessage(msg);
-			String event = map.get("Event");
-			em.setEvent(event);
-			//点击事件类型
-			if(event.equals(WechatMessageUtils.EVENT_TYPE_CLICK)){
-				return this.parseClickEventMessage(em, map);
-			}
-		}
-		//TODO 其他类型
 		return msg;
 	}
-	
+
+	public BaseEventMessage parseEventMessage(BaseInMessage msg, Map<String,String> map){
+		BaseEventMessage em = new BaseEventMessage(msg);
+		String event = map.get("Event");
+		em.setEvent(event);
+		
+		return em;
+	}
 	/**
 	 * 还原点击事件类型
 	 * @param msg

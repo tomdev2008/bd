@@ -1,4 +1,4 @@
-package com.changhong.bd.social.utils;
+package com.changhong.bd.social.wechat.parser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,12 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.changhong.bd.social.wechat.message.out.Article;
+import com.changhong.bd.social.wechat.message.out.BaseOutMessage;
 import com.changhong.bd.social.wechat.message.out.MusicOutMessage;
 import com.changhong.bd.social.wechat.message.out.NewsOutMessage;
 import com.changhong.bd.social.wechat.message.out.TextOutMessage;
@@ -28,8 +32,9 @@ import com.thoughtworks.xstream.io.xml.XppDriver;
  * @version 1.0
  * @description : xml parse工具类
  */
-public class WechatXmlUtils {
+public class OutMessageXmlParser {
 
+	private static Logger logger = LoggerFactory.getLogger(OutMessageXmlParser.class);
 
 	/**
 	 * 将数据转为Map
@@ -38,10 +43,14 @@ public class WechatXmlUtils {
 	 * @throws DocumentException
 	 * @throws IOException
 	 */
-	public static Map<String,String> parseXml(InputStream inputStream) throws DocumentException, IOException{
+	public Map<String,String> parseXml(InputStream inputStream) throws DocumentException, IOException{
+		String isString = IOUtils.toString(inputStream);
+		logger.info(isString);
+		
 		Map<String, String> map = new HashMap<String, String>();
-		SAXReader reader = new SAXReader();
-		Document document = reader.read(inputStream);
+//		SAXReader reader = new SAXReader();
+//		reader.read(inputStream);
+		Document document = DocumentHelper.parseText(isString);
 		Element root = document.getRootElement();
 		
 		@SuppressWarnings("unchecked")
@@ -56,13 +65,25 @@ public class WechatXmlUtils {
 		inputStream = null;
 		return map;
 	}
+	public String outMessageToXml(BaseOutMessage msg){
+		if(msg instanceof TextOutMessage){
+			return textMessageToXml((TextOutMessage)msg);
+		}else if(msg instanceof MusicOutMessage){
+			return musicMessageToXml((MusicOutMessage)msg);
+		}else if(msg instanceof NewsOutMessage){
+			return newsMessageToXml((NewsOutMessage)msg);
+		}else{
+			RuntimeException e = new RuntimeException("can't find out message type");
+			throw e;
+		}
+	}
 	/**
 	 * 文本消息对象转换成xml
 	 * 
 	 * @param textMessage 文本消息对象
 	 * @return xml
 	 */
-	public static String textMessageToXml(TextOutMessage textMessage) {
+	public String textMessageToXml(TextOutMessage textMessage) {
 		xstream.alias("xml", textMessage.getClass());
 		return xstream.toXML(textMessage);
 	}
@@ -73,7 +94,7 @@ public class WechatXmlUtils {
 	 * @param musicMessage 音乐消息对象
 	 * @return xml
 	 */
-	public static String musicMessageToXml(MusicOutMessage musicMessage) {
+	public String musicMessageToXml(MusicOutMessage musicMessage) {
 		xstream.alias("xml", musicMessage.getClass());
 		return xstream.toXML(musicMessage);
 	}
@@ -84,7 +105,7 @@ public class WechatXmlUtils {
 	 * @param newsMessage 图文消息对象
 	 * @return xml
 	 */
-	public static String newsMessageToXml(NewsOutMessage newsMessage) {
+	public String newsMessageToXml(NewsOutMessage newsMessage) {
 		xstream.alias("xml", newsMessage.getClass());
 		xstream.alias("item", new Article().getClass());
 		return xstream.toXML(newsMessage);
@@ -93,7 +114,7 @@ public class WechatXmlUtils {
 	/**
 	 * 扩展xstream，使其支持CDATA块
 	 */
-	private static XStream xstream = new XStream(new XppDriver() {
+	private XStream xstream = new XStream(new XppDriver() {
 		public HierarchicalStreamWriter createWriter(Writer out) {
 			return new PrettyPrintWriter(out) {
 				// 对所有xml节点的转换都增加CDATA标记
