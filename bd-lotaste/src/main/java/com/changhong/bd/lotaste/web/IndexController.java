@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.changhong.bd.lotaste.utils.NameUtils;
+
 /**
  * @author QiYao  yao.qi@changhong.com
  * @date 2014年6月18日
@@ -17,7 +19,7 @@ public class IndexController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView index(){
-		String jsp = "loteste/index";
+		String jsp = NameUtils.getEnName() + "/index";
 		ModelAndView mav = new ModelAndView(jsp);
 		return mav;
 	}
