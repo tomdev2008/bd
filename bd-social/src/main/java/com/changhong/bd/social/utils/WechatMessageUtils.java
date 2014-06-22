@@ -66,5 +66,10 @@ public class WechatMessageUtils {
 	 */
 	public static final String EVENT_TYPE_CLICK = "CLICK";
 
+	/**
+	 * URL菜单点击事件
+	 */
+	public static final Object EVENT_TYPE_VIEW = "VIEW";
+
 	
 }
