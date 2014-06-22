@@ -5,18 +5,19 @@ package com.changhong.bd.social.domain;
  * @version 1.0
  * @description : 微信子菜单
  */
-public class WechatSubButton extends WechatBaseButton {
+public class WechatSubClickButton extends WechatBaseButton {
 	
 	
-	private String type;
+	private static final long serialVersionUID = -5941189961724632824L;
+
+	private String type = "click";
 	private String key;
 	
-	public WechatSubButton(){
+	public WechatSubClickButton(){
 		super();
 	}
-	public WechatSubButton(String name, String type, String key){
+	public WechatSubClickButton(String name, String key){
 		super(name);
-		this.type = type;
 		this.key = key;
 	}
 	public String getType() {

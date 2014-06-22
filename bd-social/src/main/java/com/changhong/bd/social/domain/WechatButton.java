@@ -7,13 +7,22 @@ package com.changhong.bd.social.domain;
  */
 public class WechatButton extends WechatBaseButton{
 
-	private WechatSubButton[] sub_button;
+	private static final long serialVersionUID = -754567645537941258L;
 
-	public WechatSubButton[] getSub_button() {
+	public WechatButton(String name){
+		super(name);
+	}
+	public WechatButton(){
+		
+	}
+	//子菜单
+	private WechatBaseButton[] sub_button;
+
+	public WechatBaseButton[] getSub_button() {
 		return sub_button;
 	}
 
-	public void setSub_button(WechatSubButton[] sub_button) {
+	public void setSub_button(WechatBaseButton[] sub_button) {
 		this.sub_button = sub_button;
 	}
 	
