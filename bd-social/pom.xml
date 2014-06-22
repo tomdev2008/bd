@@ -39,6 +39,7 @@
 			<groupId>com.changhong.bd</groupId>
 			<artifactId>bd-test-support</artifactId>
 			<version>0.1.0-SNAPSHOT</version>
+			<scope>test</scope>
 		</dependency>
 	
 	</dependencies>
