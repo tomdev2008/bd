@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author QiYao  yao.qi@changhong.com
  * @date 2014年5月6日
  * @version 1.0
- * @description : 消息基类（普通用户 -> 公众帐号）
+ * @description : 消息基类（普通用户 -> 公众帐号）, 基类，所有的服务器接收信息类，必须扩展自这个类
  */
 public class BaseInMessage implements Serializable{
 	private static final long serialVersionUID = 3486639249704639013L;
