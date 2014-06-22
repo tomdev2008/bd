@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import com.changhong.bd.social.domain.WechatBaseButton;
 import com.changhong.bd.social.domain.WechatButton;
 import com.changhong.bd.social.domain.WechatMenu;
-import com.changhong.bd.social.domain.WechatSubButton;
+import com.changhong.bd.social.domain.WechatSubClickButton;
 import com.changhong.bd.social.service.api.WechatService;
 
 /**
@@ -48,12 +48,12 @@ public class SkipContextTest extends AbstractJUnit4SpringContextTests {
 		
 		WechatButton btn1 = new WechatButton();
 		btn1.setName("大数据");
-		WechatSubButton sub1 = new WechatSubButton("新闻","click","wx_news");
-		WechatSubButton sub2 = new WechatSubButton("报表","click","wx_reports");
-		WechatSubButton sub3 = new WechatSubButton("关于","click","wx_about");
-		btn1.setSub_button(new WechatSubButton[]{ sub1, sub2, sub3});
+		WechatSubClickButton sub1 = new WechatSubClickButton("新闻","wx_news");
+		WechatSubClickButton sub2 = new WechatSubClickButton("报表","wx_reports");
+		WechatSubClickButton sub3 = new WechatSubClickButton("关于","wx_about");
+		btn1.setSub_button(new WechatSubClickButton[]{ sub1, sub2, sub3});
 		
-		WechatSubButton sub4 = new WechatSubButton("帮助","click","wx_help");
+		WechatSubClickButton sub4 = new WechatSubClickButton("帮助","wx_help");
 		menu.setButton(new WechatBaseButton[]{
 			btn1,sub4
 		});
