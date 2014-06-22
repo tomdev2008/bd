@@ -1,4 +1,3 @@
-package com.changhong.bd.tool.gui.mian;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -104,20 +103,28 @@ public class PostTool extends JPanel {
 					String str = taKV.getText();
 					String[] s = str.split("\n");
 					StringBuilder sb = new StringBuilder();
+					String[] kv = null;
 					for (String line : s) {
-						sb.append(line);
+						kv = line.split("=");
+						if (kv.length != 2) {
+							JOptionPane.showMessageDialog(PostTool.this,
+									"Error format", "Error",
+									JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+
+						sb.append(kv[0].trim());// key=
+						try {
+							sb.append(URLEncoder.encode(kv[1].trim(), "UTF-8"));// encode-value
+						} catch (UnsupportedEncodingException e1) {
+							e1.printStackTrace();
+							JOptionPane.showMessageDialog(PostTool.this,
+									e1.getMessage(), "Error",
+									JOptionPane.ERROR_MESSAGE);
+							return;
+						}
 						sb.append("&");
 					}
-					str=sb.toString();
-//					try {
-//						str = URLEncoder.encode(sb.toString(), "UTF-8");
-//					} catch (UnsupportedEncodingException e1) {
-//						e1.printStackTrace();
-//						JOptionPane.showMessageDialog(PostTool.this,
-//								e1.getMessage(), "Error",
-//								JOptionPane.ERROR_MESSAGE);
-//						return;
-//					}
 					url = url + "?" + str;
 				} else {
 					param = taBody.getText().trim();
