@@ -10,8 +10,6 @@ public class WechatUtils {
 	public static final String SOCIAL_WECHAT_ACCESS_TOKEN_URL_KEY = "Social.WechatAccessTokenUrl";
 	public static final String SOCIAL_WECHAT_MENU_CREATE_URL_KEY = "Social.WechatMenuCreateUrl";
 	public static final String APP_ID_KEY = "appid";
-	public static final String WECHAT_AK_KEY = "wechatak";
-	public static final String WECHAT_SK_KEY = "wechatsk";
 	/**
 	 * 获取微信AccessTokenUrl
 	 * @return
@@ -32,21 +30,5 @@ public class WechatUtils {
 	 */
 	public static String getAppId(){
 		return System.getProperty(APP_ID_KEY);
-	}
-	/**
-	 * 获取当前APP ID的微信AK
-	 * @return
-	 */
-	public static String getWechatAk(){
-		String key = getAppId() + "." + WECHAT_AK_KEY;
-		return System.getProperty(key);
-	}
-	/**
-	 * 获取当前APP ID 微信SK
-	 * @return
-	 */
-	public static String getWechatSk(){
-		String key = getAppId() + "." + WECHAT_SK_KEY;
-		return System.getProperty(key);
 	}
 }
