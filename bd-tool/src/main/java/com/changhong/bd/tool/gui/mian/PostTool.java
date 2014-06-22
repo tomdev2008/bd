@@ -101,7 +101,6 @@ public class PostTool extends JPanel {
 									"Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				if (tbAreaPane.getSelectedIndex() == 0) {
 					String str = taKV.getText();
 					String[] s = str.split("\n");
 					StringBuilder sb = new StringBuilder();
@@ -116,6 +115,7 @@ public class PostTool extends JPanel {
 						}
 
 						sb.append(kv[0].trim());// key=
+						sb.append("=");
 						try {
 							sb.append(URLEncoder.encode(kv[1].trim(), "UTF-8"));// encode-value
 						} catch (UnsupportedEncodingException e1) {
@@ -127,11 +127,9 @@ public class PostTool extends JPanel {
 						}
 						sb.append("&");
 					}
-					url = url + "?" + str;
-				} else {
+					url = url + "?" + sb.toString();
 					param = taBody.getText().trim();
-				}
-				String result = HttpRequest.sendPost(url, param);
+				String result = HttpRequest.httpPost(url, null, param);
 				if (result == null) {
 					JOptionPane.showMessageDialog(PostTool.this,
 							"Send post failed!", "Error",
