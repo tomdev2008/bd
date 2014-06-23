@@ -15,3 +15,9 @@ bd-lotaste/.classpath
 bd-lotaste/.gitignore
 bd-lotaste/src/main/webapp/static/libs/bs/js/.jscs.json
 bd-lotaste/src/main/webapp/static/libs/bs/js/.jshintrc
+bd-tool/.classpath
+bd-tool/.gitignore
+bd-crm/.classpath
+bd-crm/.gitignore
+bd-order/.classpath
+bd-order/.gitignore
