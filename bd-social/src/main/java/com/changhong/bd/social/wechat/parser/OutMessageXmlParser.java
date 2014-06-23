@@ -14,6 +14,7 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.changhong.bd.social.wechat.message.out.Article;
 import com.changhong.bd.social.wechat.message.out.BaseOutMessage;
@@ -32,6 +33,7 @@ import com.thoughtworks.xstream.io.xml.XppDriver;
  * @version 1.0
  * @description : xml parse工具类
  */
+@Component
 public class OutMessageXmlParser {
 
 	private static Logger logger = LoggerFactory.getLogger(OutMessageXmlParser.class);

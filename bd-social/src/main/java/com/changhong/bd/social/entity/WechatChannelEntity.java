@@ -8,6 +8,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
+import com.changhong.bd.social.domain.WechatChannelDto;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -72,6 +73,16 @@ public class WechatChannelEntity extends AbsTxNameEntity{
 	}
 	public WechatChannelEntity(){
 		this.initTime();
+	}
+
+	public WechatChannelEntity(WechatChannelDto channel) {
+		super();
+		this.initTime();
+		this.setName(channel.getName());
+		this.wechatOpenId = channel.getWechatOpenId();
+		this.wechatChannelId = channel.getWechatChannelId();
+		this.wechatChannelName = channel.getWechatChannelName();
+		this.channelInfo = channel.getChannelInfo();
 	}
 
 	public String getWechatOpenId() {

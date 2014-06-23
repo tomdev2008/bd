@@ -2,7 +2,7 @@ package com.changhong.bd.social.wechat.plugin;
 
 import com.changhong.bd.social.domain.WechatChannelDto;
 import com.changhong.bd.social.domain.WechatProcessResult;
-import com.changhong.bd.social.wechat.message.in.BaseInMessage;
+import com.changhong.bd.social.wechat.message.in.ClickEventMessage;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -29,6 +29,6 @@ public interface ProcessButtonEventPlugin
 	 * 处理该消息
 	 * @return
 	 */
-	public WechatProcessResult process(BaseInMessage msg, WechatChannelDto channel);
+	public WechatProcessResult process(ClickEventMessage msg, WechatChannelDto channel);
 
 }
