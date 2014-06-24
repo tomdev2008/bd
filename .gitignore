@@ -21,3 +21,9 @@ bd-crm/.classpath
 bd-crm/.gitignore
 bd-order/.classpath
 bd-order/.gitignore
+bd-bae/.classpath
+bd-bae/.gitignore
+bd-file-bcs/.classpath
+bd-file-bcs/.gitignore
+bd-file/.classpath
+bd-file/.gitignore
