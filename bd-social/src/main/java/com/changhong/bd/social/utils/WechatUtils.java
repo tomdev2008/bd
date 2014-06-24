@@ -9,7 +9,6 @@ public class WechatUtils {
 
 	public static final String SOCIAL_WECHAT_ACCESS_TOKEN_URL_KEY = "Social.WechatAccessTokenUrl";
 	public static final String SOCIAL_WECHAT_MENU_CREATE_URL_KEY = "Social.WechatMenuCreateUrl";
-	public static final String APP_ID_KEY = "appid";
 	/**
 	 * 获取微信AccessTokenUrl
 	 * @return
@@ -23,12 +22,5 @@ public class WechatUtils {
 	 */
 	public static String getMenuCreateUrl(){
 		return System.getProperty(SOCIAL_WECHAT_MENU_CREATE_URL_KEY);
-	}
-	/**
-	 * 获取系统的APP ID
-	 * @return
-	 */
-	public static String getAppId(){
-		return System.getProperty(APP_ID_KEY);
 	}
 }
