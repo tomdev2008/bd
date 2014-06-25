@@ -63,7 +63,11 @@ public class SysAccountServiceImpl implements SysAccountService {
 
 	@Override
 	public SysAccountDto queryById(String id) {
-		return new SysAccountDto(this.sysAccountDao.query(id));
+		SysAccountEntity e = this.sysAccountDao.query(id);
+		if(null==e){
+			return null;
+		}
+		return new SysAccountDto(e);
 	}
 
 	public void entryptPassword(SysAccountEntity account) {
