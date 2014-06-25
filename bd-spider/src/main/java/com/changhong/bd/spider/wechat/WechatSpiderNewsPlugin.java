@@ -10,14 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.changhong.bd.core.resp.JsonPageData;
-import com.changhong.bd.social.entity.SocialWechatMessage;
-import com.changhong.bd.social.plugin.AbsWechatProcessPlugin;
+import com.changhong.bd.social.domain.WechatChannelDto;
+import com.changhong.bd.social.domain.WechatProcessResult;
 import com.changhong.bd.social.utils.WechatMessageUtils;
-import com.changhong.bd.social.utils.WechatXmlUtils;
-import com.changhong.bd.social.wechat.message.in.BaseInMessage;
 import com.changhong.bd.social.wechat.message.in.TextInMessage;
 import com.changhong.bd.social.wechat.message.out.Article;
 import com.changhong.bd.social.wechat.message.out.NewsOutMessage;
+import com.changhong.bd.social.wechat.plugin.AbsProcessMessagePlugin;
 import com.changhong.bd.spider.entity.SpiderClassifiedNews;
 import com.changhong.bd.spider.service.api.SpiderNewsService;
 
@@ -28,25 +27,12 @@ import com.changhong.bd.spider.service.api.SpiderNewsService;
  * @description : 微信爬虫插件 - 处理新闻信息
  */
 @Service("wechatSpiderNewsPlugin")
-public class WechatSpiderNewsPlugin extends AbsWechatProcessPlugin{
+public class WechatSpiderNewsPlugin extends AbsProcessMessagePlugin{
 
 	@Autowired
 	private SpiderNewsService spiderNewsService;
 	
 	private static Logger logger = LoggerFactory.getLogger(WechatSpiderNewsPlugin.class);
-
-	@Override
-	public String messageType() {
-		logger.info("只处理文本内容");
-		return WechatMessageUtils.REQ_MESSAGE_TYPE_TEXT;
-	}
-	
-	@Override
-	public boolean want(String info) {
-		logger.info("处理任何文本内容");
-		return true;
-	}
-
 
 	@Override
 	public Integer getPriority() {
@@ -55,10 +41,13 @@ public class WechatSpiderNewsPlugin extends AbsWechatProcessPlugin{
 	}
 
 	@Override
-	public String process(BaseInMessage msg, List<SocialWechatMessage> history, String accountId) {
-		TextInMessage tim = (TextInMessage)msg;
-		
-		String content = tim.getContent();
+	public String getChannelId() {
+		return "";
+	}
+
+	@Override
+	public WechatProcessResult process(TextInMessage msg, WechatChannelDto channel) {
+		String content = msg.getContent();
 		JsonPageData<SpiderClassifiedNews> jpd = spiderNewsService.query(1, 3, content, null, null);
 		
 		NewsOutMessage newsMessage = new NewsOutMessage(msg);
@@ -89,8 +78,16 @@ public class WechatSpiderNewsPlugin extends AbsWechatProcessPlugin{
 		
 		newsMessage.setArticleCount(articleList.size());
 		newsMessage.setArticles(articleList);
-		String resp = WechatXmlUtils.newsMessageToXml(newsMessage);
-		return resp;
+
+		WechatChannelDto dto = null;
+		if(null==channel){
+			dto = new WechatChannelDto(msg.getFromUserName(), "splider_news", "爬虫新闻频道", "");
+		}else{
+			dto = null;
+		}
+		WechatProcessResult res = new WechatProcessResult(newsMessage, dto);
+		logger.info(res.toString());
+		return res;
 	}
 
 }

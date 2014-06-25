@@ -1,19 +1,18 @@
 package com.changhong.bd.spider.test;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.changhong.bd.core.resp.JsonPageData;
+import com.changhong.bd.social.domain.WechatChannelDto;
+import com.changhong.bd.social.domain.WechatProcessResult;
 import com.changhong.bd.social.utils.WechatMessageUtils;
 import com.changhong.bd.social.wechat.message.in.TextInMessage;
 import com.changhong.bd.spider.entity.SpiderClassifiedNews;
 import com.changhong.bd.spider.service.api.SpiderNewsService;
 import com.changhong.bd.spider.service.api.SpiderRespService;
 import com.changhong.bd.spider.wechat.WechatSpiderNewsPlugin;
+import com.changhong.bd.test.support.runner.AbstractTestRunner;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -21,13 +20,8 @@ import com.changhong.bd.spider.wechat.WechatSpiderNewsPlugin;
  * @version 1.0
  * @description : 
  */
-@ContextConfiguration(locations={
-		"classpath*:/applicationContext.xml",
-		"classpath*:/applicationContext-mail.xml",
-		"classpath*:/applicationContext-spider.xml"
-})
-public class ContextTest extends AbstractJUnit4SpringContextTests {
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+public class ContextTest extends AbstractTestRunner {
+	
 	@Autowired
 	private SpiderRespService spiderRespService;
 	
@@ -44,15 +38,15 @@ public class ContextTest extends AbstractJUnit4SpringContextTests {
 	public void testSpiderNewsPluginProcess(){
 		TextInMessage msg = new TextInMessage();
 		
-		msg.setContent("Tony的名字");
+		msg.setContent("汽车");
 		msg.setCreateTime(System.currentTimeMillis());
 		msg.setFromUserName("from");
 		msg.setMsgId(10000);
 		msg.setMsgType(WechatMessageUtils.REQ_MESSAGE_TYPE_TEXT);
 		msg.setToUserName("tony");
 		
-		String rep = this.wechatSpiderNewsPlugin.process(msg, null, "");
-		logger.info(rep);
+		WechatProcessResult rep = this.wechatSpiderNewsPlugin.process(msg, new WechatChannelDto());
+		out(rep);
 	}
 	//对远端数据库进行远端新闻查询测试
 	@Test

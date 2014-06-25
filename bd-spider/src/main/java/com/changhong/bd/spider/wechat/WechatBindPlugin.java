@@ -2,45 +2,43 @@ package com.changhong.bd.spider.wechat;
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.changhong.bd.core.domain.SysAccountDto;
 import com.changhong.bd.core.service.api.SysAccountService;
-import com.changhong.bd.social.entity.SocialWechatMessage;
-import com.changhong.bd.social.plugin.AbsWechatProcessPlugin;
+import com.changhong.bd.social.domain.WechatChannelDto;
+import com.changhong.bd.social.domain.WechatProcessResult;
+import com.changhong.bd.social.entity.SocialBind;
 import com.changhong.bd.social.service.api.SocialService;
 import com.changhong.bd.social.utils.SocialTypeUtils;
-import com.changhong.bd.social.utils.WechatMessageUtils;
-import com.changhong.bd.social.utils.WechatXmlUtils;
-import com.changhong.bd.social.wechat.message.in.BaseInMessage;
+import com.changhong.bd.social.wechat.message.in.ClickEventMessage;
 import com.changhong.bd.social.wechat.message.out.TextOutMessage;
+import com.changhong.bd.social.wechat.plugin.AbsProcessButtonEventPlugin;
 
 /**
  * @author QiYao  yao.qi@changhong.com
  * @date 2014年5月14日
- * @version 1.0 TODO 测试版
- * @description : 微信插件： 登陆模块
+ * @version 1.0 
+ * @description : 微信插件： 账号绑定
  */
 @Service("wechatHelpClickPlugin")
-public class WechatHelpClickPlugin extends AbsWechatProcessPlugin{
+public class WechatBindPlugin extends AbsProcessButtonEventPlugin{
 
 	@Autowired
 	private SocialService socialService;
 	
 	@Autowired
 	private SysAccountService sysAccountService;
-	
+
 	@Override
-	public boolean want(String info) {
-		//处理 帮助按钮的信息
-		return "wx_help".equals(info);
+	public Integer getPriority() {
+		return new Integer(100);
 	}
 
 	@Override
-	public String messageType() {
-		return WechatMessageUtils.EVENT_TYPE_CLICK;
+	public String getEventKey() {
+		return "bind_account";
 	}
 
 	/**************
@@ -51,28 +49,25 @@ public class WechatHelpClickPlugin extends AbsWechatProcessPlugin{
 	 * 	3.没有登陆，就是：请登陆，发送登陆URL地址
 	 * 
 	 **************/
+
 	@Override
-	public String process(BaseInMessage msg, List<SocialWechatMessage> history, String accountId) {
-		
+	public WechatProcessResult process(ClickEventMessage msg, WechatChannelDto channel) {
 		TextOutMessage textMessage = new TextOutMessage(msg);
-		if(StringUtils.isNotEmpty(accountId)){
-			SysAccountDto dto = this.sysAccountService.queryById(accountId);
+		List<SocialBind> list = socialService.queryByOpenId(SocialTypeUtils.WECHAT, msg.getFromUserName());
+		if(null!=list && list.size()>0){
+			//已经绑定了账户
+			SysAccountDto dto = this.sysAccountService.queryById(list.get(0).getAccountId());
 			//提示，欢迎某某，这里是帮助信息
 			String content = dto.getName() + ",欢迎您,这里是帮助信息。";
 			textMessage.setContent(content);
 		}else{
-			//提示，登陆
+			//尚未绑定账户
 			String content = "<a href=\"http://bdspider.duapp.com/social/sign/in?socialType="+SocialTypeUtils.WECHAT+"&socialId="+msg.getFromUserName()+"\">点击这里登陆</a>";
 			textMessage.setContent(content);
 		}
-		return WechatXmlUtils.textMessageToXml(textMessage);
 
-	}
-
-	@Override
-	public Integer getPriority() {
-		//较低优先级
-		return new Integer(5);
+		WechatProcessResult res = new WechatProcessResult(textMessage, null);
+		return res;
 	}
 
 }
