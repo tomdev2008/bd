@@ -14,20 +14,38 @@ public class WechatChannelDto extends AbsTxNameEntity{
 
 	private static final long serialVersionUID = -4889384404271558248L;
 
-	private String wechatOpenId;
+	private String wechatOpenId = "";
 	
-	private String wechatChannelId;
+	private String wechatChannelId = "";
 	
 	//频道名称
-	private String wechatChannelName;
+	private String wechatChannelName = "";
 
-	private String channelInfo;
+	private String channelInfo = "";
 	//消息进入时间
-	private DateTime inTime;
+	private DateTime inTime = new DateTime();
 	
 	//消息过期时间
-	private DateTime expireTime;
+	private DateTime expireTime = new DateTime();
 
+	public WechatChannelDto(){
+		
+	}
+	public WechatChannelDto(String openId, String channelId, String channelName, String channelInfo){
+		this.wechatChannelId = openId;
+		this.wechatChannelId = channelId;
+		this.wechatChannelName = channelName;
+		this.channelInfo = channelInfo;
+		this.initTime();
+	}
+	private void initTime(){
+
+		DateTime current = new DateTime();
+		inTime = current.minusMinutes(1);
+		//有效期30分钟
+		expireTime = current.plusMinutes(30);
+	}
+	
 	public String getWechatOpenId() {
 		return wechatOpenId;
 	}

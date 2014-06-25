@@ -46,7 +46,7 @@ public class OutMessageXmlParser {
 	 * @throws IOException
 	 */
 	public Map<String,String> parseXml(InputStream inputStream) throws DocumentException, IOException{
-		String isString = IOUtils.toString(inputStream);
+		String isString = IOUtils.toString(inputStream, "UTF-8");
 		logger.info(isString);
 		
 		Map<String, String> map = new HashMap<String, String>();

@@ -42,7 +42,7 @@ public class TestForWechatMenuService
 		
 		WechatButton me = new WechatButton("我");
 
-		WechatSubUrlButton recommend = new WechatSubUrlButton("今日推荐", "today_recommend");
+		WechatSubClickButton recommend = new WechatSubClickButton("今日推荐", "today_recommend");
 		WechatSubClickButton myOrder = new WechatSubClickButton("我的订单", "my_order");
 		WechatSubClickButton cash = new WechatSubClickButton("余额","cash_left");
 		

@@ -5,11 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
+import com.changhong.bd.social.domain.WechatAccessToken;
 import com.changhong.bd.social.domain.WechatBaseButton;
 import com.changhong.bd.social.domain.WechatButton;
 import com.changhong.bd.social.domain.WechatMenu;
 import com.changhong.bd.social.domain.WechatSubClickButton;
+import com.changhong.bd.social.service.api.WechatKeyService;
+import com.changhong.bd.social.service.api.WechatMenuService;
 import com.changhong.bd.social.service.api.WechatService;
+import com.changhong.bd.social.service.api.WechatTokenService;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -22,19 +26,21 @@ import com.changhong.bd.social.service.api.WechatService;
 		"classpath*:/applicationContext-mail.xml",
 		"classpath*:/applicationContext-spider.xml"
 })
+@SuppressWarnings("unused")
 public class SkipContextTest extends AbstractJUnit4SpringContextTests {
 	
 	@Autowired
-	private WechatService wechatService;
+	private WechatTokenService wechatTokenService;
+	@Autowired
+	private WechatMenuService wechatMenuService;
 	/**
 	 * 进行菜单创建
 	 */
 	@Test
 	public void testCreateMenu(){
-		//String ak[] = this.wechatService.queryAkSk();
-		//WechatAccessToken wxToken = this.wechatService.queryToken(ak[0], ak[1]);
+		//WechatAccessToken wxToken = this.wechatTokenService.queryToken();
 		//String token = wxToken.getToken();
-		//this.wechatService.createMenu(this.getMenu(), token);
+		//this.wechatMenuService.createMenu(this.getMenu(), token);
 		System.out.println("Skip test create Wechat Menu");
 	}
 
@@ -42,20 +48,24 @@ public class SkipContextTest extends AbstractJUnit4SpringContextTests {
 	 * 创建菜单
 	 * @return
 	 */
-	@SuppressWarnings("unused")
 	private WechatMenu getMenu() {
 		WechatMenu menu = new WechatMenu();
 		
+		WechatSubClickButton service = new WechatSubClickButton("微信客服", "wechat_service");
+		WechatSubClickButton spiderNews = new WechatSubClickButton("爬虫新闻", "spider_news");
+		
+		
 		WechatButton btn1 = new WechatButton();
-		btn1.setName("大数据");
-		WechatSubClickButton sub1 = new WechatSubClickButton("新闻","wx_news");
-		WechatSubClickButton sub2 = new WechatSubClickButton("报表","wx_reports");
-		WechatSubClickButton sub3 = new WechatSubClickButton("关于","wx_about");
+		
+		btn1.setName("我");
+		WechatSubClickButton sub1 = new WechatSubClickButton("账号绑定","bind_account");
+		WechatSubClickButton sub2 = new WechatSubClickButton("商城","spider_shop");
+		WechatSubClickButton sub3 = new WechatSubClickButton("自助保修","auto_help");
+		
 		btn1.setSub_button(new WechatSubClickButton[]{ sub1, sub2, sub3});
 		
-		WechatSubClickButton sub4 = new WechatSubClickButton("帮助","wx_help");
 		menu.setButton(new WechatBaseButton[]{
-			btn1,sub4
+			service,spiderNews,btn1
 		});
 		
 		return menu;

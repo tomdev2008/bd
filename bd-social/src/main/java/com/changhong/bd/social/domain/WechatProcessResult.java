@@ -24,7 +24,11 @@ public class WechatProcessResult implements Serializable{
 	public WechatProcessResult(){
 		
 	}
-	
+	/**
+	 * 
+	 * @param msg 需要回复的信息
+	 * @param channel 需要切换的频道
+	 */
 	public WechatProcessResult(BaseOutMessage msg, WechatChannelDto channel){
 		this.msg = msg;
 		this.channel = channel;

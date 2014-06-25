@@ -47,7 +47,14 @@ public class MessageProcesser {
 	}
 
 	public WechatProcessResult process(TextInMessage tim, WechatChannelDto channel) {
-		// TODO Auto-generated method stub
+		if(null!=msgPlugins){
+			for(ProcessMessagePlugin p : msgPlugins){
+				String channelId = channel.getWechatChannelId();
+				if(channelId.equals(p.getChannelId())){
+					return p.process(tim, channel);
+				}
+			}
+		}
 		return null;
 	}
 }

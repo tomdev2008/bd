@@ -70,7 +70,9 @@ public class WechatServiceImpl implements WechatService {
 			
 			//用户当前所属的频道
 			WechatChannelDto channel = this.wechatChannelService.queryCurrent(msg.getFromUserName());
-
+			if(null==channel){
+				channel = new WechatChannelDto();
+			}
 			WechatProcessResult result = null;
 			// 文本消息
 			if (msgType.equals(WechatMessageUtils.REQ_MESSAGE_TYPE_TEXT)) {
