@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.changhong.bd.core.resp.JsonPageData;
+import com.changhong.bd.core.service.api.SysAccountService;
 import com.changhong.bd.social.domain.WechatChannelDto;
 import com.changhong.bd.social.domain.WechatProcessResult;
 import com.changhong.bd.social.utils.WechatMessageUtils;
@@ -30,7 +31,13 @@ public class ContextTest extends AbstractTestRunner {
 	
 	@Autowired
 	private WechatSpiderNewsPlugin wechatSpiderNewsPlugin;
-	
+	@Autowired
+	private SysAccountService sysAccountService;
+	@Test
+	public void testForQueryAccount(){
+
+		this.sysAccountService.queryById("8a83b6b14641fc5c014641fcc4a20000");
+	}
 	/**
 	 * 对爬虫新闻插件进行处理测试
 	 */

@@ -17,7 +17,7 @@ import com.changhong.bd.core.entity.abs.AbsTxEntity;
  */
 @Entity
 @Table(name="social_bind")
-public class SocialBind extends AbsTxEntity{
+public class SocialBindEntity extends AbsTxEntity{
 
 	private static final long serialVersionUID = 9141368988489980678L;
 
@@ -30,10 +30,10 @@ public class SocialBind extends AbsTxEntity{
 	@Column(name="accountid", length=32, nullable=false)
 	private String accountId;
 
-	public SocialBind(){
+	public SocialBindEntity(){
 		
 	}
-	public SocialBind(String bindType, String openId, String accountId){
+	public SocialBindEntity(String bindType, String openId, String accountId){
 		this.bindDate = new DateTime();
 		this.bindType = bindType;
 		this.openId = openId;

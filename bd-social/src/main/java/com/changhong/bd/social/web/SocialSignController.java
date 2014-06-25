@@ -30,7 +30,7 @@ import com.changhong.bd.core.resp.JsonMessage;
 import com.changhong.bd.core.service.api.SysAccountService;
 import com.changhong.bd.core.utils.DateUtils;
 import com.changhong.bd.email.service.api.MailService;
-import com.changhong.bd.social.entity.SocialBind;
+import com.changhong.bd.social.entity.SocialBindEntity;
 import com.changhong.bd.social.service.api.SocialService;
 
 /**
@@ -108,10 +108,10 @@ public class SocialSignController {
 		    SysAccountEntity sysAccount =  this.sysAccountService.queryUserByLoginName(account);
 		    
 		    //该社交账户已经绑定的信息, 如果存在，就先删除了
-			List<SocialBind> blist = this.socialService.queryByOpenId(socialType, socialId);
+			List<SocialBindEntity> blist = this.socialService.queryByOpenId(socialType, socialId);
 			if(null!=blist && blist.size()>0){
 				
-				for(SocialBind bind : blist){
+				for(SocialBindEntity bind : blist){
 					this.socialService.deleteLink(bind);
 				}
 			}

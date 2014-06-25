@@ -2,7 +2,7 @@ package com.changhong.bd.social.service.api;
 
 import java.util.List;
 
-import com.changhong.bd.social.entity.SocialBind;
+import com.changhong.bd.social.entity.SocialBindEntity;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -18,7 +18,7 @@ public interface SocialService {
 	 * @param openId
 	 * @return
 	 */
-	public List<SocialBind> queryByOpenId(String type, String openId);
+	public List<SocialBindEntity> queryByOpenId(String type, String openId);
 	
 	/**
 	 * 通过usre id 查询绑定信息
@@ -26,7 +26,7 @@ public interface SocialService {
 	 * @param userId
 	 * @return
 	 */
-	public List<SocialBind> queryByUserId(String type, String userId);
+	public List<SocialBindEntity> queryByUserId(String type, String userId);
 	
 	/**
 	 * 创建绑定连接
@@ -34,7 +34,7 @@ public interface SocialService {
 	 * @param type ${link : com.changhong.bd.social.utils.SocialTypeUtils}
 	 * @param openId
 	 */
-	public SocialBind addLink(String userId, String type, String openId);
+	public SocialBindEntity addLink(String userId, String type, String openId);
 	
 	/**
 	 * 删除绑定信息
@@ -45,5 +45,5 @@ public interface SocialService {
 	 * 删除绑定信息
 	 * @param socialBind
 	 */
-	public void deleteLink(SocialBind socialBind);
+	public void deleteLink(SocialBindEntity socialBind);
 }

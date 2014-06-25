@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.changhong.bd.social.dao.SocialBindDao;
-import com.changhong.bd.social.entity.SocialBind;
+import com.changhong.bd.social.entity.SocialBindEntity;
 import com.changhong.bd.social.service.api.SocialService;
 
 /**
@@ -26,16 +26,16 @@ public class SocialServiceImpl implements SocialService{
 	private SocialBindDao socialBindDao;
 	
 	@Override
-	public List<SocialBind> queryByOpenId(String type, String openId) {
+	public List<SocialBindEntity> queryByOpenId(String type, String openId) {
 		DetachedCriteria criteria = this.socialBindDao.createDetachedCriteria();
 		criteria.add(Restrictions.eq("bindType", type));
 		criteria.add(Restrictions.eq("openId", openId));
-		List<SocialBind> list = this.socialBindDao.queryByCriteria(criteria);
+		List<SocialBindEntity> list = this.socialBindDao.queryByCriteria(criteria);
 		return list;
 	}
 
 	@Override
-	public List<SocialBind> queryByUserId(String type, String userId) {
+	public List<SocialBindEntity> queryByUserId(String type, String userId) {
 		DetachedCriteria dc = this.socialBindDao.createDetachedCriteria();
 		dc.add(Restrictions.eq("bindType", type));
 		dc.add(Restrictions.eq("accountId", userId));
@@ -44,9 +44,9 @@ public class SocialServiceImpl implements SocialService{
 
 	@Override
 	@Transactional(readOnly=false)
-	public SocialBind addLink(String userId, String type, String openId) {
+	public SocialBindEntity addLink(String userId, String type, String openId) {
 		//this.queryUserId(type, openId)
-		SocialBind e = new SocialBind(type, openId, userId);
+		SocialBindEntity e = new SocialBindEntity(type, openId, userId);
 		return this.socialBindDao.save(e);
 	}
 	
@@ -58,7 +58,7 @@ public class SocialServiceImpl implements SocialService{
 	
 	@Override
 	@Transactional(readOnly=false)
-	public void deleteLink(SocialBind entity){
+	public void deleteLink(SocialBindEntity entity){
 		this.socialBindDao.delete(entity);
 	}
 }

@@ -9,7 +9,7 @@ import com.changhong.bd.core.domain.SysAccountDto;
 import com.changhong.bd.core.service.api.SysAccountService;
 import com.changhong.bd.social.domain.WechatChannelDto;
 import com.changhong.bd.social.domain.WechatProcessResult;
-import com.changhong.bd.social.entity.SocialBind;
+import com.changhong.bd.social.entity.SocialBindEntity;
 import com.changhong.bd.social.service.api.SocialService;
 import com.changhong.bd.social.utils.SocialTypeUtils;
 import com.changhong.bd.social.wechat.message.in.ClickEventMessage;
@@ -53,7 +53,7 @@ public class WechatBindPlugin extends AbsProcessButtonEventPlugin{
 	@Override
 	public WechatProcessResult process(ClickEventMessage msg, WechatChannelDto channel) {
 		TextOutMessage textMessage = new TextOutMessage(msg);
-		List<SocialBind> list = socialService.queryByOpenId(SocialTypeUtils.WECHAT, msg.getFromUserName());
+		List<SocialBindEntity> list = socialService.queryByOpenId(SocialTypeUtils.WECHAT, msg.getFromUserName());
 		if(null!=list && list.size()>0){
 			//已经绑定了账户
 			SysAccountDto dto = this.sysAccountService.queryById(list.get(0).getAccountId());
