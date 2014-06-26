@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>bd-spider</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>bd-spider</name>
 	<description>bd-spider</description>
 
