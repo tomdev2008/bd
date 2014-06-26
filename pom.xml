@@ -12,7 +12,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<spring.version>4.0.5.RELEASE</spring.version>
-		<hibernate.version>4.3.5.Final</hibernate.version>
+		<hibernate.version>4.2.7.SP1</hibernate.version>
 	</properties>
 
 	<dependencies>
@@ -146,12 +146,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>javassist</groupId>
-			<artifactId>javassist</artifactId>
-			<version>3.12.1.GA</version>
-		</dependency>
-		
+				
 		<dependency>
 			<groupId>org.jadira.usertype</groupId>
 			<artifactId>usertype.core</artifactId>
@@ -384,5 +379,9 @@
 		<module>bd-lotaste</module>
     <module>bd-order</module>
     <module>bd-crm</module>
+    <module>bd-file</module>
+    <module>bd-file-bcs</module>
+    <module>bd-bae</module>
+    <module>bd-spider-web</module>
 	</modules>
 </project>
