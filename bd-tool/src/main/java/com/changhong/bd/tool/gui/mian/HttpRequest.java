@@ -15,6 +15,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -81,7 +82,7 @@ public class HttpRequest {
         HttpEntity entity;  
         try {  
             entity = new UrlEncodedFormEntity(formparams, "UTF-8");  
-            entity = new StringEntity(postData);
+            entity = new StringEntity(postData, ContentType.APPLICATION_JSON);
             
             httpPost.setEntity(entity);  
             HttpResponse httpResponse;  
