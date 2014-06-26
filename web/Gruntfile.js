@@ -6,7 +6,7 @@ module.exports = function(grunt) {
             spider:{
                 expand: true,
                 src: ["static/**", "!static/libs/echart/src/**"],
-                dest:"../bd-spider/src/main/webapp/"
+                dest:"../bd-spider-web/src/main/webapp/"
             },
             loteste:{
                 expand: true,
