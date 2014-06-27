@@ -28,3 +28,5 @@ bd-file-bcs/.gitignore
 bd-file/.classpath
 bd-file/.gitignore
 bd-spider-web/.classpath
+bd-lotaste-web/.classpath
+bd-lotaste-web/.gitignore

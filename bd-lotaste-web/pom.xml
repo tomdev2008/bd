@@ -5,35 +5,17 @@
     <artifactId>bd</artifactId>
     <version>0.1.0-SNAPSHOT</version>
   </parent>
+  <artifactId>bd-lotaste-web</artifactId>
+  <packaging>war</packaging>
+  <name>bd-lotaste-web</name>
+  <description>bd-lotaste-web</description>
   
-  <artifactId>bd-lotaste</artifactId>
-  <packaging>jar</packaging>
-  <name>bd-lotaste</name>
-  <description>bd-lotaste</description>
   
   <dependencies>
 		<!-- add core dependency -->
 		<dependency>
 			<groupId>com.changhong.bd</groupId>
-			<artifactId>bd-core</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.changhong.bd</groupId>
-			<artifactId>bd-mail</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.changhong.bd</groupId>
-			<artifactId>bd-social</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.changhong.bd</groupId>
-			<artifactId>bd-network</artifactId>
+			<artifactId>bd-lotaste</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		
@@ -42,7 +24,7 @@
 	<build>
 		
 		<defaultGoal>install</defaultGoal>
-		<finalName>bd-lotaste</finalName>
+		<finalName>bd-lotaste-web</finalName>
 
 	    <resources>
 	        <resource>
@@ -100,16 +82,6 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.3-SNAPSHOT</version>
-				<configuration>
-					<server>tomcat</server>
-				</configuration>
-			</plugin>
-			
 			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
