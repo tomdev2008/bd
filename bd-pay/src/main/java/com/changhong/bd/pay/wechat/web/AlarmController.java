@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.changhong.bd.core.resp.Produces;
 import com.changhong.bd.pay.entity.WechatAlarmEntity;
 import com.changhong.bd.pay.wechat.service.api.WechatAlarmService;
-import com.changhong.bd.social.utils.WechatXmlUtils;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -35,7 +34,8 @@ public class AlarmController {
 	@ResponseBody
 	public String process(HttpServletRequest request) throws IOException, DocumentException{
 		InputStream is = request.getInputStream();
-		Map<String,String> data = WechatXmlUtils.parseXml(is);
+		//TODO
+		Map<String,String> data = null;//WechatXmlUtils.parseXml(is);
 		
 		WechatAlarmEntity e = new WechatAlarmEntity();
 	    

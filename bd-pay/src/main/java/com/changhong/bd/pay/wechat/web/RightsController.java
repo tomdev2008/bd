@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.changhong.bd.core.resp.Produces;
-import com.changhong.bd.social.utils.WechatXmlUtils;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -29,8 +28,8 @@ public class RightsController {
 	@ResponseBody
 	public String process(HttpServletRequest request) throws IOException, DocumentException{
 		InputStream is = request.getInputStream();
-		
-		Map<String,String> data = WechatXmlUtils.parseXml(is);
+		//TODO
+		Map<String,String> data = null;///WechatXmlUtils.parseXml(is);
 		
 		return "success";
 	}

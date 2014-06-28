@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.changhong.bd.core.resp.Produces;
 import com.changhong.bd.pay.wechat.service.api.WechatPayService;
-import com.changhong.bd.social.utils.WechatXmlUtils;
 
 /**
  * @author QiYao  yao.qi@changhong.com
@@ -60,7 +59,7 @@ public class NotifyController {
 			HttpServletRequest request) throws IOException, DocumentException{
 		InputStream is = request.getInputStream();
 		
-		Map<String,String> data = WechatXmlUtils.parseXml(is);
+		Map<String,String> data = null;//WechatXmlUtils.parseXml(is);
 		//TODO
 		
 		return "success";
