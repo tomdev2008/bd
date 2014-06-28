@@ -69,7 +69,12 @@ public class WechatMessageUtils {
 	/**
 	 * URL菜单点击事件
 	 */
-	public static final Object EVENT_TYPE_VIEW = "VIEW";
+	public static final String EVENT_TYPE_VIEW = "VIEW";
+	
+	/**
+	 * 扫描带参二维码事件
+	 */
+	public static final String EVENT_TYPE_SCAN = "SCAN"; 
 
 	
 }

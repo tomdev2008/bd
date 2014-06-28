@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,14 @@ import com.changhong.bd.social.utils.WechatMessageUtils;
 import com.changhong.bd.social.wechat.message.in.BaseEventMessage;
 import com.changhong.bd.social.wechat.message.in.BaseInMessage;
 import com.changhong.bd.social.wechat.message.in.ClickEventMessage;
+import com.changhong.bd.social.wechat.message.in.ScanEventInMessage;
 import com.changhong.bd.social.wechat.message.in.TextInMessage;
 import com.changhong.bd.social.wechat.message.out.TextOutMessage;
 import com.changhong.bd.social.wechat.parser.InMessageObjectParser;
 import com.changhong.bd.social.wechat.parser.OutMessageXmlParser;
 import com.changhong.bd.social.wechat.processer.ButtonEventProcesser;
 import com.changhong.bd.social.wechat.processer.MessageProcesser;
+import com.changhong.bd.social.wechat.processer.ScanEventProcesser;
 import com.changhong.bd.social.wechat.processer.SubscribeEventProcesser;
 import com.changhong.bd.social.wechat.processer.UnsubscribeEventProcesser;
 
@@ -53,6 +56,8 @@ public class WechatServiceImpl implements WechatService {
 	private SubscribeEventProcesser subscribeEventProcesser;
 	@Autowired
 	private UnsubscribeEventProcesser unsubscribeEventProcesser;
+	@Autowired
+	private ScanEventProcesser scanEventProcesser;
 	//========微信信息处理器 end =======================
 	
 	@Override
@@ -104,9 +109,20 @@ public class WechatServiceImpl implements WechatService {
 				BaseEventMessage em = this.inMessageObjectParser.parseEventMessage(msg, requestMap);
 				// 事件类型
 				String eventType = requestMap.get("Event");
+				//扫描二维码
+				if(eventType.equals(WechatMessageUtils.EVENT_TYPE_SCAN)){
+					ScanEventInMessage cem = this.inMessageObjectParser.parseScanEventMessage(em, requestMap);
+					result = this.scanEventProcesser.process(cem);
+				}
 				// 订阅
-				if (eventType.equals(WechatMessageUtils.EVENT_TYPE_SUBSCRIBE)) {
-					result = this.subscribeEventProcesser.process(em, channel);
+				else if (eventType.equals(WechatMessageUtils.EVENT_TYPE_SUBSCRIBE)) {
+					if(StringUtils.isNotEmpty(requestMap.get("Ticket"))){
+						//has ticket so it's scan
+						ScanEventInMessage cem = this.inMessageObjectParser.parseScanEventMessage(em, requestMap);
+						result = this.scanEventProcesser.process(cem);
+					}else{
+						result = this.subscribeEventProcesser.process(em, channel);
+					}
 				}
 				// 取消订阅
 				else if (eventType.equals(WechatMessageUtils.EVENT_TYPE_UNSUBSCRIBE)) {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.changhong.bd.social.wechat.message.in.BaseEventMessage;
 import com.changhong.bd.social.wechat.message.in.BaseInMessage;
 import com.changhong.bd.social.wechat.message.in.ClickEventMessage;
+import com.changhong.bd.social.wechat.message.in.ScanEventInMessage;
 import com.changhong.bd.social.wechat.message.in.TextInMessage;
 
 /**
@@ -75,5 +76,20 @@ public class InMessageObjectParser {
 		tim.setContent(content);
 		
 		return tim;
+	}
+
+	/**
+	 * convert base to scan event
+	 * @param em
+	 * @param requestMap
+	 * @return
+	 */
+	public ScanEventInMessage parseScanEventMessage(BaseEventMessage em,
+			Map<String, String> requestMap) {
+		ScanEventInMessage sim = new ScanEventInMessage(em);
+		sim.setEventKey(requestMap.get("EventKey"));
+		sim.setTicket(requestMap.get("Ticket"));
+		
+		return sim;
 	}
 }
