@@ -362,7 +362,6 @@
 		<module>bd-network</module>
 		<module>bd-social</module>
 		<module>bd-spider</module>
-		<module>bd-mingwang</module>
 		<module>bd-pay</module>
 		<module>bd-products</module>
 		<module>bd-lotaste</module>
