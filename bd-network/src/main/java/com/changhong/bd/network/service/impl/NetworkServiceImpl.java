@@ -6,12 +6,26 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -93,5 +107,48 @@ public class NetworkServiceImpl implements NetworkService {
 			logger.error("https request error:{}", e);
 		}
 		return jsonObject;
+	}
+
+	@Override
+	public String httpsPost(String url, Map<String, String> values, String postData) {
+		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();  
+        CloseableHttpClient closeableHttpClient = httpClientBuilder.build();  
+        
+        HttpPost httpPost = new HttpPost(url);
+        
+        //httpPost.setConfig(DEFAULT);  
+        // 创建参数队列  
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();  
+        
+        if(null!=values){
+        	for(String key : values.keySet()){
+        		formparams.add(new BasicNameValuePair(key, values.get(key))); 
+        	}
+        }
+         
+        HttpEntity entity;  
+        try {  
+            entity = new UrlEncodedFormEntity(formparams, "UTF-8");  
+            entity = new StringEntity(postData, ContentType.APPLICATION_JSON);
+            
+            httpPost.setEntity(entity);  
+            HttpResponse httpResponse;  
+            //post请求  
+            httpResponse = closeableHttpClient.execute(httpPost);  
+   
+            //getEntity()  
+            HttpEntity httpEntity = httpResponse.getEntity();
+            String is = null;
+            if (httpEntity != null) {  
+                is = EntityUtils.toString(httpEntity, "UTF-8"); 
+            }  
+            //释放资源  
+            closeableHttpClient.close(); 
+            return is; 
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+        
+        return null;
 	}
 }

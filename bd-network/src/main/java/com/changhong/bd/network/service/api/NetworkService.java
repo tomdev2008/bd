@@ -1,5 +1,7 @@
 package com.changhong.bd.network.service.api;
 
+import java.util.Map;
+
 import net.sf.json.JSONObject;
 
 /**
@@ -10,4 +12,6 @@ import net.sf.json.JSONObject;
  */
 public interface NetworkService {
 	public JSONObject httpsRequest(String requestUrl, String requestMethod, String outputStr);
+
+	public String httpsPost(String url, Map<String, String> values, String postData);
 }
