@@ -30,7 +30,7 @@ public class TestForWechatMenuService
 	
 	@Test
 	public void testCreateMenu(){
-		//out(this.createLotasteMenu());
+//		out(this.createLotasteMenu());
 		out("success");
 	}
 	
@@ -39,22 +39,22 @@ public class TestForWechatMenuService
 		WechatAccessToken token = this.wechatTokenService.queryToken();
 		
 		WechatMenu menu = new WechatMenu();
-		
-		WechatButton me = new WechatButton("我");
 
-		WechatSubClickButton recommend = new WechatSubClickButton("今日推荐", "today_recommend");
-		WechatSubClickButton myOrder = new WechatSubClickButton("我的订单", "my_order");
-		WechatSubClickButton cash = new WechatSubClickButton("余额","cash_left");
+		WechatSubClickButton info = new WechatSubClickButton("资讯","info_button");
+		WechatButton more = new WechatButton("更多");
+
+		WechatSubClickButton about = new WechatSubClickButton("关于", "about_lotaste");
+		WechatSubClickButton twoDimCode = new WechatSubClickButton("二维码", "two_dim_code");
+		WechatSubClickButton account = new WechatSubClickButton("我的账户","my_account");
 		
-		me.setSub_button(new WechatBaseButton[]{
-			myOrder, recommend, cash 
+		more.setSub_button(new WechatBaseButton[]{
+			about, twoDimCode, account 
 		});
 		
 		WechatSubUrlButton shopView = new WechatSubUrlButton("商城","http://lotaste.duapp.com/shop");
-		WechatSubClickButton twoDimCode = new WechatSubClickButton("二维码", "two_dim_code");
 		
 		WechatBaseButton[] buttons = new WechatBaseButton[]{
-			me,shopView,twoDimCode
+			shopView,info, more
 		};
 		menu.setButton(buttons);
 		return this.wechatMenuService.createMenu(menu, token.getToken());

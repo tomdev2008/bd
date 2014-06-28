@@ -38,9 +38,9 @@ public class SkipContextTest extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testCreateMenu(){
-		//WechatAccessToken wxToken = this.wechatTokenService.queryToken();
-		//String token = wxToken.getToken();
-		//this.wechatMenuService.createMenu(this.getMenu(), token);
+//		WechatAccessToken wxToken = this.wechatTokenService.queryToken();
+//		String token = wxToken.getToken();
+//		this.wechatMenuService.createMenu(this.getMenu(), token);
 		System.out.println("Skip test create Wechat Menu");
 	}
 
