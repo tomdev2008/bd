@@ -2,8 +2,6 @@ package com.changhong.bd.social.service.api;
 
 import java.io.InputStream;
 
-import com.changhong.bd.social.domain.WechatMenu;
-
 /**
  * @author QiYao  yao.qi@changhong.com
  * @date 2014年5月6日
