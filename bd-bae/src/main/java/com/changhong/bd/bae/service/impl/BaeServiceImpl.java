@@ -1,5 +1,6 @@
 package com.changhong.bd.bae.service.impl;
 
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
 import com.changhong.bd.bae.service.api.BaeService;
@@ -12,6 +13,7 @@ import com.changhong.bd.core.utils.PropertyUtils;
  * @description : 
  */
 @Service("baeService")
+@DependsOn("sysPropertiesService")
 public class BaeServiceImpl
 	implements BaeService{
 
