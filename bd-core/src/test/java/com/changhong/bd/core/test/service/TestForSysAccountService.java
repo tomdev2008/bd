@@ -1,14 +1,10 @@
 package com.changhong.bd.core.test.service;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.changhong.bd.core.service.api.SysAccountService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.changhong.bd.test.support.runner.AbstractTestRunner;
 
 /**
  * @author QiYao yao.qi@changhong.com
@@ -16,12 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @version 1.0
  * @description :
  */
-@ContextConfiguration(locations = { "classpath*:/applicationContext.xml" })
-public class TestForSysAccountService extends AbstractJUnit4SpringContextTests {
+public class TestForSysAccountService extends AbstractTestRunner{
 
-	private static Logger logger = LoggerFactory.getLogger(TestForSysUserService.class);
-	private ObjectMapper om = new ObjectMapper();
-	
 	@Autowired
 	private SysAccountService sysAccountService;
 
