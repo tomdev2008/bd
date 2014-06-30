@@ -11,6 +11,11 @@
 	<description>bd-file</description>
 
 	<dependencies>		
+		<dependency>
+			<groupId>com.changhong.bd</groupId>
+			<artifactId>bd-core</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
 		<!-- baidu bcs  start-->
 		<dependency>
 			<groupId>net.sf.flexjson</groupId>
