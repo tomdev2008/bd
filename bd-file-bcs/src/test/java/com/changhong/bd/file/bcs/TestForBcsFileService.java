@@ -2,7 +2,6 @@ package com.changhong.bd.file.bcs;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.junit.After;
@@ -44,7 +43,7 @@ public class TestForBcsFileService extends AbstractTestRunner{
 		out(dto);
 	}
 	@Test
-	public void testQuery() throws FileNotFoundException{
+	public void testQuery() throws IOException{
 		dto = this.fileService.queryFile(dto.getId());
 		Assert.notNull(dto.getInputStream());
 	}

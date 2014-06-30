@@ -2,7 +2,6 @@ package com.changhong.bd.file.bcs;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -67,12 +66,12 @@ public class BcsFileService implements FileService{
 	 * @param baiduBCS
 	 * @param id
 	 * @return
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	public InputStream getObject(BaiduBCS baiduBCS, String id) throws FileNotFoundException {
+	public InputStream getObject(BaiduBCS baiduBCS, String id) throws IOException {
 		id = "/" + id;
 		GetObjectRequest getObjectRequest = new GetObjectRequest(bucket, id);
-		File file = new File("tmp");
+		File file = File.createTempFile(id, "tmp");
 		baiduBCS.getObject(getObjectRequest, file);
 		return new FileInputStream(file);
 	}
@@ -106,7 +105,7 @@ public class BcsFileService implements FileService{
 	 * @see com.changhong.bd.file.service.api.FileService#queryFile(java.lang.String)
 	 */
 	@Override
-	public FileDto queryFile(String fileId) throws FileNotFoundException {
+	public FileDto queryFile(String fileId) throws IOException {
 
 		FileEntity e = this.fileDao.query(fileId);
 		InputStream is = this.getObject(baiduBCS, e.getId());

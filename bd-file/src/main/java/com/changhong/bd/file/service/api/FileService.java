@@ -27,8 +27,9 @@ public interface FileService {
 	 * @param fileId
 	 * @return
 	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	public FileDto queryFile(String fileId) throws FileNotFoundException;
+	public FileDto queryFile(String fileId) throws FileNotFoundException, IOException;
 	
 	/**
 	 * 新增文件
