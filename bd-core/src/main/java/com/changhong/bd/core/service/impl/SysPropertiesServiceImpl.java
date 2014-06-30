@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +19,9 @@ import com.changhong.bd.core.service.api.SysPropertiesService;
  * @version 1.0
  * @description : 
  */
-@Service
+@Service("sysPropertiesService")
 @Transactional(readOnly=true)
+@DependsOn("localSysPropertiesService")
 public class SysPropertiesServiceImpl implements SysPropertiesService {
 
 	@Autowired

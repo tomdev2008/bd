@@ -21,7 +21,7 @@ import com.changhong.bd.core.utils.ResourceUtils;
  * @description : 本地系统属性服务
  * TODO
  */
-@Service
+@Service("localSysPropertiesService")
 public class LocalSysPropertiesServiceImpl {
 	
 	private static Logger logger = LoggerFactory.getLogger(LocalSysPropertiesServiceImpl.class);

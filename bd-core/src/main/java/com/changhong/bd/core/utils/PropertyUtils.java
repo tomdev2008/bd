@@ -1,4 +1,5 @@
 package com.changhong.bd.core.utils;
+
 /**
  * @author QiYao  yao.qi@changhong.com
  * @date 2014年6月24日
