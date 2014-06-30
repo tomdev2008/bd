@@ -37,6 +37,18 @@
 			<version>${project.version}</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.changhong.bd</groupId>
+			<artifactId>bd-file</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.changhong.bd</groupId>
+			<artifactId>bd-file-bcs</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
