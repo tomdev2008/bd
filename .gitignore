@@ -30,3 +30,5 @@ bd-file/.gitignore
 bd-spider-web/.classpath
 bd-lotaste-web/.classpath
 bd-lotaste-web/.gitignore
+bd-content/.classpath
+bd-content/.gitignore
