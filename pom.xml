@@ -361,7 +361,6 @@
 		<module>bd-mail</module>
 		<module>bd-network</module>
 		<module>bd-social</module>
-		<module>bd-spider</module>
 		<module>bd-pay</module>
 		<module>bd-products</module>
 		<module>bd-order</module>
@@ -369,7 +368,6 @@
 		<module>bd-file</module>
 		<module>bd-file-bcs</module>
 		<module>bd-bae</module>
-		<module>bd-spider-web</module>
 		<module>bd-content</module>
 	</modules>
 </project>
