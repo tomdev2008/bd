@@ -30,7 +30,7 @@ public class ContextTest extends AbstractJUnit4SpringContextTests {
 	 */
 	@Test
 	public void testSendMail() throws MessagingException{
-		this.mailService.send("标题", "309103737@qq.com", "您的账户**已经和微信号**进行了绑定");
+		//this.mailService.send("标题", "309103737@qq.com", "您的账户**已经和微信号**进行了绑定");
 	}
 	
 }
