@@ -32,3 +32,5 @@ bd-lotaste-web/.classpath
 bd-lotaste-web/.gitignore
 bd-content/.classpath
 bd-content/.gitignore
+bd-quartz/.classpath
+bd-quartz/.gitignore

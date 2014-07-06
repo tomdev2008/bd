@@ -369,5 +369,6 @@
 		<module>bd-file-bcs</module>
 		<module>bd-bae</module>
 		<module>bd-content</module>
+		<module>bd-quartz</module>
 	</modules>
 </project>
