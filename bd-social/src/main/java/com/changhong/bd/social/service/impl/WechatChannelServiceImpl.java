@@ -6,11 +6,11 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.joda.time.DateTime;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.changhong.bd.core.utils.BeanUtils;
 import com.changhong.bd.social.dao.WechatChannelDao;
 import com.changhong.bd.social.domain.WechatChannelDto;
 import com.changhong.bd.social.entity.WechatChannelEntity;
@@ -52,7 +52,7 @@ public class WechatChannelServiceImpl
 
 	private WechatChannelDto transfer(WechatChannelEntity wechatChannelEntity) {
 		WechatChannelDto dto = new WechatChannelDto();
-		BeanUtils.copyProperties(dto, wechatChannelEntity);
+		BeanUtils.copyProperties(wechatChannelEntity, dto );
 		return dto;
 	}
 
