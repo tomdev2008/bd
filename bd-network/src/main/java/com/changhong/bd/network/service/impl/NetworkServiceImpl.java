@@ -151,4 +151,50 @@ public class NetworkServiceImpl implements NetworkService {
         
         return null;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.changhong.bd.network.service.api.NetworkService#httpRequest(java.lang.String, java.util.Map, java.lang.String)
+	 */
+	@Override
+	public void httpRequest(String url, Map<String, String> map) {
+		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();  
+        CloseableHttpClient closeableHttpClient = httpClientBuilder.build();  
+        
+        HttpRequest	method = new HttpRequest(url);
+        
+        //httpPost.setConfig(DEFAULT);  
+        // 创建参数队列  
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();  
+        
+        if(null!=values){
+        	for(String key : values.keySet()){
+        		formparams.add(new BasicNameValuePair(key, values.get(key))); 
+        	}
+        }
+         
+        HttpEntity entity;  
+        try {  
+            entity = new UrlEncodedFormEntity(formparams, "UTF-8");  
+            entity = new StringEntity(postData, ContentType.APPLICATION_JSON);
+            
+            httpPost.setEntity(entity);  
+            HttpResponse httpResponse;  
+            //post请求  
+            httpResponse = closeableHttpClient.execute(httpPost);  
+   
+            //getEntity()  
+            HttpEntity httpEntity = httpResponse.getEntity();
+            String is = null;
+            if (httpEntity != null) {  
+                is = EntityUtils.toString(httpEntity, "UTF-8"); 
+            }  
+            //释放资源  
+            closeableHttpClient.close(); 
+            return is; 
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+        
+        return null;
+	}
 }

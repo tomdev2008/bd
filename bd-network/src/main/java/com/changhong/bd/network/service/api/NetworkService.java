@@ -14,4 +14,11 @@ public interface NetworkService {
 	public JSONObject httpsRequest(String requestUrl, String requestMethod, String outputStr);
 
 	public String httpsPost(String url, Map<String, String> values, String postData);
+
+	/**
+	 * @param url
+	 * @param object
+	 * @param object2
+	 */
+	public void httpRequest(String url, Map<String,String> map);
 }
