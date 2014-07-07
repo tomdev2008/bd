@@ -33,7 +33,7 @@ public class TestForQuartzTaskService extends AbstractTestRunner{
 	
 	@Test
 	public void testQuery(){
-		out(this.quartzTaskService.query(1, 10));
+		out(this.quartzTaskService.query(1, 10, null));
 	}
 	
 	@After

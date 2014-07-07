@@ -3,6 +3,9 @@ package com.changhong.bd.quartz.service.impl;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.SimpleExpression;
+import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,12 +36,26 @@ public class QuartzTaskServiceImpl implements QuartzTaskService{
 	 * @see com.changhong.bd.quartz.service.api.QuartzTaskService#query(java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
-	public JsonPageData<QuartzTask> query(Integer pageNo, Integer pageSize) {
+	public JsonPageData<QuartzTask> query(Integer pageNo, Integer pageSize,
+			DateTime startTime) {
 		DetachedCriteria dc = this.quartzTaskDao.createDetachedCriteria();
+		DetachedCriteria cdc = this.quartzTaskDao.createDetachedCriteria();
 		
-		Long count = this.quartzTaskDao.queryRowCount();
-		Integer ps[] = PageUtils.page(pageNo, pageSize);
-		List<QuartzTask> list = this.quartzTaskDao.queryByCriteria(dc, ps[0], pageSize);
+		if(null!=startTime){
+			SimpleExpression se = Restrictions.lt("startDate", startTime);
+			dc.add(se);
+			cdc.add(se);
+		}
+		
+		Long count = this.quartzTaskDao.queryRowCount(cdc);
+		List<QuartzTask> list = null;
+		
+		if(null!=pageNo && null!=pageSize){
+			Integer ps[] = PageUtils.page(pageNo, pageSize);
+			list = this.quartzTaskDao.queryByCriteria(dc, ps[0], pageSize);
+		}else{
+			list = this.quartzTaskDao.queryByCriteria(dc);
+		}
 		
 		JsonPageData<QuartzTask> jpd = new JsonPageData<QuartzTask>(pageNo, pageSize, count, list);
 		return jpd;

@@ -28,7 +28,7 @@ public class QuartzTaskLog extends AbsEntity{
 	
 	//调度转读
 	@Column(name="state")
-	private String state = "";
+	private String state = "";  //c 完成，r 运行， e 异常
 
 	//开始时间
 	@Column(name="startdate")

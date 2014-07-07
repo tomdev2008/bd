@@ -1,5 +1,7 @@
 package com.changhong.bd.quartz.service.api;
 
+import org.joda.time.DateTime;
+
 import com.changhong.bd.core.resp.JsonPageData;
 import com.changhong.bd.quartz.domain.QuartzTaskDto;
 import com.changhong.bd.quartz.entity.QuartzTask;
@@ -17,11 +19,13 @@ public interface QuartzTaskService {
 	 * 查询任务
 	 * @param pageNo
 	 * @param pageSize
+	 * @param startTime
 	 * @return
 	 */
 	public JsonPageData<QuartzTask> query(
 			Integer pageNo,
-			Integer pageSize
+			Integer pageSize,
+			DateTime startTime
 			);
 
 	/**
