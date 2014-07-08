@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ConnectException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,9 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -151,36 +155,41 @@ public class NetworkServiceImpl implements NetworkService {
         
         return null;
 	}
-
-	/* (non-Javadoc)
-	 * @see com.changhong.bd.network.service.api.NetworkService#httpRequest(java.lang.String, java.util.Map, java.lang.String)
-	 */
+	
 	@Override
-	public void httpRequest(String url, Map<String, String> map) {
+	public String httpGet(String url, Map<String, String> values){
+		return this.httpGet(url, values, false);
+	}
+	@Override
+	public String httpGet(String url, Map<String, String> values, Boolean isSecurity) {
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();  
         CloseableHttpClient closeableHttpClient = httpClientBuilder.build();  
         
-        HttpRequest	method = new HttpRequest(url);
-        
-        //httpPost.setConfig(DEFAULT);  
-        // 创建参数队列  
-        List<NameValuePair> formparams = new ArrayList<NameValuePair>();  
-        
+        URIBuilder ub = new URIBuilder();
+        if(isSecurity){
+        	ub.setScheme("https");
+        }else{
+        	ub.setScheme("http");
+        }
+
+        ub.setHost(url);
         if(null!=values){
         	for(String key : values.keySet()){
-        		formparams.add(new BasicNameValuePair(key, values.get(key))); 
+        		ub.setParameter(key, values.get(key));
         	}
         }
-         
-        HttpEntity entity;  
+        HttpGet method = null;
+		try {
+			URI uri = ub.build();
+			method = new HttpGet(uri);
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
+		}
+        
         try {  
-            entity = new UrlEncodedFormEntity(formparams, "UTF-8");  
-            entity = new StringEntity(postData, ContentType.APPLICATION_JSON);
-            
-            httpPost.setEntity(entity);  
             HttpResponse httpResponse;  
-            //post请求  
-            httpResponse = closeableHttpClient.execute(httpPost);  
+            //get请求  
+            httpResponse = closeableHttpClient.execute(method);  
    
             //getEntity()  
             HttpEntity httpEntity = httpResponse.getEntity();

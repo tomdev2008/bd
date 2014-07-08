@@ -16,9 +16,18 @@ public interface NetworkService {
 	public String httpsPost(String url, Map<String, String> values, String postData);
 
 	/**
+	 * HTTP GET 请求， 返回String字符串
 	 * @param url
-	 * @param object
-	 * @param object2
+	 * @param values
+	 * @param isSecurity 是否使用https
+	 * @return
 	 */
-	public void httpRequest(String url, Map<String,String> map);
+	public String httpGet(String url, Map<String,String> values, Boolean isSecurity);
+	/**
+	 * 
+	 * @param url
+	 * @param values
+	 * @return
+	 */
+	public String httpGet(String url, Map<String, String> values);
 }
