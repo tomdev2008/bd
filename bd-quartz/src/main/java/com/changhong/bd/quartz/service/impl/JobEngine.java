@@ -1,27 +1,12 @@
 package com.changhong.bd.quartz.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.annotation.PostConstruct;
 
-import org.joda.time.DateTime;
-import org.quartz.CronScheduleBuilder;
-import org.quartz.CronTrigger;
-import org.quartz.Job;
-import org.quartz.JobBuilder;
-import org.quartz.JobDataMap;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.TriggerBuilder;
-import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.changhong.bd.core.resp.JsonPageData;
-import com.changhong.bd.quartz.entity.QuartzTask;
 import com.changhong.bd.quartz.service.api.QuartzTaskService;
 
 /**
@@ -39,48 +24,11 @@ public class JobEngine {
 
 	private static Logger logger = LoggerFactory.getLogger(JobEngine.class);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.quartz.Job#execute(org.quartz.JobExecutionContext)
-	 */
-	@SuppressWarnings("unchecked")
-	public void execute() throws SchedulerException,
-			ClassNotFoundException {
-		logger.info("jobEngine execute");
-
-		Scheduler inScheduler = StdSchedulerFactory.getDefaultScheduler();
-
-		JobDetail job = null;
-
-		CronTrigger trigger = null;
-
-		JsonPageData<QuartzTask> jpd = this.quartzTaskService.query(null, null,
-				new DateTime());
-		if (jpd.getCount() > 0) {
-			List<QuartzTask> list = jpd.getDatas();
-			for (QuartzTask qt : list) {
-				Map<String, String> map = new HashMap<String,String>();
-				map.put("params", qt.getParams());
-				
-				JobDataMap data = new JobDataMap(map);
-				job = JobBuilder
-						.newJob((Class<? extends Job>) Class.forName(qt
-								.getImplClass()))
-						.withIdentity(qt.getId(), qt.getId())
-						.setJobData(data).build();
-
-				trigger = TriggerBuilder
-						.newTrigger()
-						.withSchedule(
-								CronScheduleBuilder.cronSchedule(qt
-										.getTaskExpress())).build();
-
-				inScheduler.scheduleJob(job, trigger);
-
-			}
-		}
-		inScheduler.start();
+	@PostConstruct
+	public void after(){
+		logger.info("jobEngine post:");
+		JobEngineRunner jer = new JobEngineRunner(quartzTaskService);
+		jer.start();
 	}
 
 }

@@ -40,4 +40,9 @@ public interface QuartzTaskService {
 	 * @param id
 	 */
 	public void delete(String id);
+
+	/**
+	 * 初始化任务调度系统
+	 */
+	public void init();
 }

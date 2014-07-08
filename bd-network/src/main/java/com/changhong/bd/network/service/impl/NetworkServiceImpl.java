@@ -166,7 +166,7 @@ public class NetworkServiceImpl implements NetworkService {
         CloseableHttpClient closeableHttpClient = httpClientBuilder.build();  
         
         URIBuilder ub = new URIBuilder();
-        if(isSecurity){
+        if(null!=isSecurity && isSecurity){
         	ub.setScheme("https");
         }else{
         	ub.setScheme("http");
