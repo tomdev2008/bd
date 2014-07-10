@@ -1,5 +1,6 @@
 package com.changhong.bd.quartz.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +57,7 @@ public class QuartzTaskServiceImpl implements QuartzTaskService{
 	 * @see com.changhong.bd.quartz.service.api.QuartzTaskService#query(java.lang.Integer, java.lang.Integer)
 	 */
 	@Override
-	public JsonPageData<QuartzTask> query(Integer pageNo, Integer pageSize,
+	public JsonPageData<QuartzTaskDto> query(Integer pageNo, Integer pageSize,
 			DateTime startTime) {
 		DetachedCriteria dc = this.quartzTaskDao.createDetachedCriteria();
 		DetachedCriteria cdc = this.quartzTaskDao.createDetachedCriteria();
@@ -77,7 +78,14 @@ public class QuartzTaskServiceImpl implements QuartzTaskService{
 			list = this.quartzTaskDao.queryByCriteria(dc);
 		}
 		
-		JsonPageData<QuartzTask> jpd = new JsonPageData<QuartzTask>(pageNo, pageSize, count, list);
+		List<QuartzTaskDto> listd = new ArrayList<QuartzTaskDto>();
+		
+		for(QuartzTask t : list){
+			QuartzTaskDto d = new QuartzTaskDto();
+			BeanUtils.copyProperties(t, d);
+			listd.add(d);
+		}
+		JsonPageData<QuartzTaskDto> jpd = new JsonPageData<QuartzTaskDto>(pageNo, pageSize, count, listd );
 		return jpd;
 	}
 
@@ -121,11 +129,11 @@ public class QuartzTaskServiceImpl implements QuartzTaskService{
 		try {
 			inScheduler = StdSchedulerFactory.getDefaultScheduler();
 
-			JsonPageData<QuartzTask> jpd = this.query(null, null,
+			JsonPageData<QuartzTaskDto> jpd = this.query(null, null,
 					new DateTime());
 			if (jpd.getCount() > 0) {
-				List<QuartzTask> list = jpd.getDatas();
-				for (QuartzTask qt : list) {
+				List<QuartzTaskDto> list = jpd.getDatas();
+				for (QuartzTaskDto qt : list) {
 					try {
 						this.addJob(qt);
 					} catch (ClassNotFoundException e) {
@@ -141,7 +149,7 @@ public class QuartzTaskServiceImpl implements QuartzTaskService{
 	}
 
 	@SuppressWarnings("unchecked")
-	private void addJob(QuartzTask qt) throws ClassNotFoundException, SchedulerException{
+	private void addJob(QuartzTaskDto qt) throws ClassNotFoundException, SchedulerException{
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("params", qt.getParams());

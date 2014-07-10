@@ -2,11 +2,15 @@ package com.changhong.bd.quartz.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+import com.changhong.bd.core.entity.SysAccountEntity;
 import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
 
 /**
@@ -43,12 +47,9 @@ public class QuartzTask extends AbsTxNameEntity{
 	private String params = "";
 	
 	//创建人账户
-	@Column(name="userid")
-	private String userId = "";
-	
-	//创建人名字
-	@Column(name="username")
-	private String userName = "";
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="accountid")
+	private SysAccountEntity account = null;
 
 	/**
 	 * @return the taskType
@@ -121,32 +122,19 @@ public class QuartzTask extends AbsTxNameEntity{
 	}
 
 	/**
-	 * @return the userId
+	 * @return the account
 	 */
-	public String getUserId() {
-		return userId;
+	public SysAccountEntity getAccount() {
+		return account;
 	}
 
 	/**
-	 * @param userId the userId to set
+	 * @param account the account to set
 	 */
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setAccount(SysAccountEntity account) {
+		this.account = account;
 	}
 
-	/**
-	 * @return the userName
-	 */
-	public String getUserName() {
-		return userName;
-	}
-
-	/**
-	 * @param userName the userName to set
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 	
 	
 }

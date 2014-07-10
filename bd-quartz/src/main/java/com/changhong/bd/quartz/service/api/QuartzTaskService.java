@@ -22,7 +22,7 @@ public interface QuartzTaskService {
 	 * @param startTime
 	 * @return
 	 */
-	public JsonPageData<QuartzTask> query(
+	public JsonPageData<QuartzTaskDto> query(
 			Integer pageNo,
 			Integer pageSize,
 			DateTime startTime
