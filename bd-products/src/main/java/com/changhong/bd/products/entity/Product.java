@@ -13,8 +13,8 @@ import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
  * @description : 商品基本库信息
  */
 @Entity
-@Table(name="products_product")
-public class ProductEntity extends AbsTxNameEntity{
+@Table(name="product")
+public class Product extends AbsTxNameEntity{
 
 	private static final long serialVersionUID = -8761936127669640029L;
 

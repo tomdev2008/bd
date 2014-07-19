@@ -24,6 +24,8 @@ public class ProductProcessGroup extends AbsTxNameEntity implements Priority{
 
 	@Column(name="processtype")
 	private Integer processType = 1; // 1，多选，2单选
+	
+	
 	@Column(name="priority")
 	private Integer priority;
 	

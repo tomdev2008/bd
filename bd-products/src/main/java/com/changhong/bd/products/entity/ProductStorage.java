@@ -11,15 +11,13 @@ import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
  * @date 2014年7月9日
  * @email yao.qi@changhong.com
  * @description 商品仓库 
- *
+ * 
+ * TODO ： 只有一个店的情况下暂时不启用
  */
 @Entity
 @Table(name="product_storage")
 public class ProductStorage extends AbsTxNameEntity{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1478717487235391373L;
 	
 	/**

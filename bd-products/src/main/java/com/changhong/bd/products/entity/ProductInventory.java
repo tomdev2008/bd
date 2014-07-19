@@ -26,7 +26,7 @@ public class ProductInventory extends AbsEntity{
 	private ProductStorage storage;//仓库
 	
 	@Column(name="productid")
-	private ProductBusinessEntity product;//商品
+	private ProductBusiness product;//商品
 
 	/**
 	 * @return the count
@@ -59,14 +59,14 @@ public class ProductInventory extends AbsEntity{
 	/**
 	 * @return the product
 	 */
-	public ProductBusinessEntity getProduct() {
+	public ProductBusiness getProduct() {
 		return product;
 	}
 
 	/**
 	 * @param product the product to set
 	 */
-	public void setProduct(ProductBusinessEntity product) {
+	public void setProduct(ProductBusiness product) {
 		this.product = product;
 	}
 	
