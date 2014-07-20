@@ -33,7 +33,7 @@ public class ProductProcessGroup extends AbsTxNameEntity implements Priority{
 	@Column(name="priority")
 	private Integer priority = 1;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy="processgroupid")
+	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private List<ProductProcess> processes = new ArrayList<ProductProcess>();
 
 	/**
