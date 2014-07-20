@@ -2,9 +2,6 @@ package com.changhong.bd.products.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
@@ -22,26 +19,44 @@ public class ProductBusiness extends AbsTxNameEntity{
 	private static final long serialVersionUID = 2002429574485444291L;
 
 	//计量单位
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="productid")
-	private Product product = null;
-
+	@Column(name="productid")
+	private String productId = "";
+	
+	//单位
+	@Column(name="measureunit")
+	private String measureUnit = "斤";
+	
+	//简单分类ID
+	@Column(name="typeid")
+	private String typeId = null;
+	
 	//价格
 	@Column(name="price")
 	private Double price = 0.0;
+	
+	//html显示内容
+	@Column(name="htmlcontent")
+	private String htmlContent;
 
+	//是否热销
+	@Column(name="ishot")
+	private Integer isHot = 0;
+	
+	//拼音
+	@Column(name="pinyin")
+	private String pinyin = "";
 	/**
-	 * @return the product
+	 * @return the productId
 	 */
-	public Product getProduct() {
-		return product;
+	public String getProductId() {
+		return productId;
 	}
 
 	/**
-	 * @param product the product to set
+	 * @param productId the productId to set
 	 */
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	/**
@@ -56,6 +71,76 @@ public class ProductBusiness extends AbsTxNameEntity{
 	 */
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	/**
+	 * @return the htmlContent
+	 */
+	public String getHtmlContent() {
+		return htmlContent;
+	}
+
+	/**
+	 * @param htmlContent the htmlContent to set
+	 */
+	public void setHtmlContent(String htmlContent) {
+		this.htmlContent = htmlContent;
+	}
+
+	/**
+	 * @return the isHot
+	 */
+	public Integer getIsHot() {
+		return isHot;
+	}
+
+	/**
+	 * @param isHot the isHot to set
+	 */
+	public void setIsHot(Integer isHot) {
+		this.isHot = isHot;
+	}
+
+	/**
+	 * @return the pinyin
+	 */
+	public String getPinyin() {
+		return pinyin;
+	}
+
+	/**
+	 * @param pinyin the pinyin to set
+	 */
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
+	}
+
+	/**
+	 * @return the measureUnit
+	 */
+	public String getMeasureUnit() {
+		return measureUnit;
+	}
+
+	/**
+	 * @param measureUnit the measureUnit to set
+	 */
+	public void setMeasureUnit(String measureUnit) {
+		this.measureUnit = measureUnit;
+	}
+
+	/**
+	 * @return the typeId
+	 */
+	public String getTypeId() {
+		return typeId;
+	}
+
+	/**
+	 * @param typeId the typeId to set
+	 */
+	public void setTypeId(String typeId) {
+		this.typeId = typeId;
 	}
 	
 	
