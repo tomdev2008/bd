@@ -21,4 +21,20 @@ public class Product extends AbsTxNameEntity{
 	//计量单位
 	@Column(name="measureunit")
 	private String measureUnit = "斤";
+
+	/**
+	 * @return the measureUnit
+	 */
+	public String getMeasureUnit() {
+		return measureUnit;
+	}
+
+	/**
+	 * @param measureUnit the measureUnit to set
+	 */
+	public void setMeasureUnit(String measureUnit) {
+		this.measureUnit = measureUnit;
+	}
+	
+	
 }

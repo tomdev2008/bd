@@ -2,6 +2,9 @@ package com.changhong.bd.products.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.changhong.bd.core.entity.abs.AbsEntity;
@@ -20,13 +23,14 @@ public class ProductInventory extends AbsEntity{
 	private static final long serialVersionUID = -1958875193697248532L;
 
 	@Column(name="count")
-	private Double count;//库存量
+	private Double count = 0.0;//库存量
 	
-	@Column(name="storageid")
-	private ProductStorage storage;//仓库
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="storageid")
+	private ProductStorage storage = null;//仓库
 	
 	@Column(name="productid")
-	private ProductBusiness product;//商品
+	private ProductBusiness product = null;//商品
 
 	/**
 	 * @return the count

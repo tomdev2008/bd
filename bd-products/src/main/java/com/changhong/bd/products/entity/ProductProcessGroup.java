@@ -1,9 +1,13 @@
 package com.changhong.bd.products.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
@@ -27,10 +31,10 @@ public class ProductProcessGroup extends AbsTxNameEntity implements Priority{
 	
 	
 	@Column(name="priority")
-	private Integer priority;
+	private Integer priority = 1;
 	
-	
-	private List<ProductProcess> processes;
+	@OneToMany(cascade=CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy="processgroupid")
+	private List<ProductProcess> processes = new ArrayList<ProductProcess>();
 
 	/**
 	 * @return the processType

@@ -12,7 +12,6 @@ import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
  * @email yao.qi@changhong.com
  * @description 商品仓库 
  * 
- * TODO ： 只有一个店的情况下暂时不启用
  */
 @Entity
 @Table(name="product_storage")
@@ -24,7 +23,7 @@ public class ProductStorage extends AbsTxNameEntity{
 	 * 仓库所在位置
 	 */
 	@Column(name="location")
-	private String location;
+	private String location = "";
 
 	/**
 	 * @return the location
