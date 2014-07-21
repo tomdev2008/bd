@@ -6,23 +6,24 @@ import com.changhong.bd.core.entity.abs.AbsTxNameEntity;
  * @author QiYao
  * @date 2014年7月20日
  * @email yao.qi@changhong.com
- * @description 
+ * @description
  *
  */
-public class ProductBusinessDto extends AbsTxNameEntity{
+public class ProductBusinessDto extends AbsTxNameEntity {
 
 	private static final long serialVersionUID = 2002429574485444291L;
-
-	//计量单位
+	// 缩略图地址
+	private String thumbnailUrl = "";
+	// 计量单位
 	private String productId = "";
 
-	//价格
+	// 价格
 	private Double price = 0.0;
-	
-	//html显示内容
+
+	// html显示内容
 	private String htmlContent;
 
-	//是否热销
+	// 是否热销
 	private Integer isHot = 0;
 
 	/**
@@ -33,7 +34,8 @@ public class ProductBusinessDto extends AbsTxNameEntity{
 	}
 
 	/**
-	 * @param productId the productId to set
+	 * @param productId
+	 *            the productId to set
 	 */
 	public void setProductId(String productId) {
 		this.productId = productId;
@@ -47,7 +49,8 @@ public class ProductBusinessDto extends AbsTxNameEntity{
 	}
 
 	/**
-	 * @param price the price to set
+	 * @param price
+	 *            the price to set
 	 */
 	public void setPrice(Double price) {
 		this.price = price;
@@ -61,7 +64,8 @@ public class ProductBusinessDto extends AbsTxNameEntity{
 	}
 
 	/**
-	 * @param htmlContent the htmlContent to set
+	 * @param htmlContent
+	 *            the htmlContent to set
 	 */
 	public void setHtmlContent(String htmlContent) {
 		this.htmlContent = htmlContent;
@@ -75,11 +79,25 @@ public class ProductBusinessDto extends AbsTxNameEntity{
 	}
 
 	/**
-	 * @param isHot the isHot to set
+	 * @param isHot
+	 *            the isHot to set
 	 */
 	public void setIsHot(Integer isHot) {
 		this.isHot = isHot;
 	}
-	
-	
+
+	/**
+	 * @return the thumbnailUrl
+	 */
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	/**
+	 * @param thumbnailUrl the thumbnailUrl to set
+	 */
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
+	}
+
 }

@@ -18,6 +18,10 @@ public class ProductBusiness extends AbsTxNameEntity{
 
 	private static final long serialVersionUID = 2002429574485444291L;
 
+	//缩略图地址
+	@Column(name="thumbnailurl")
+	private String thumbnailUrl = "";
+	
 	//计量单位
 	@Column(name="productid")
 	private String productId = "";
@@ -141,6 +145,20 @@ public class ProductBusiness extends AbsTxNameEntity{
 	 */
 	public void setTypeId(String typeId) {
 		this.typeId = typeId;
+	}
+
+	/**
+	 * @return the thumbnailUrl
+	 */
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	/**
+	 * @param thumbnailUrl the thumbnailUrl to set
+	 */
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
 	}
 	
 	
